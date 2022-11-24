@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Home" >
+
+        </item>
+        <item
+            android:id="@+id/nav_qlnhanvien"
+            android:title="Quản lý nhân viên"
+            android:icon="@drawable/nhanvien"
+            android:visible="false"/>
+        <item
+            android:id="@+id/nav_qlkhachhang"
+            android:title="Quản lý khách hàng"
+            android:icon="@drawable/khach_hang"
+            android:visible="false"/>
+        <item android:id="@+id/nav_hoadon"
+            android:title="Hóa đơn"
+            android:icon="@drawable/bill"
+            android:visible="false"/>
+        <item
+            android:title="Sản phẩm" >
+            <menu>
+                <item
+                    android:id="@+id/nav_themloaixe"
+                    android:title="Thêm loại xe"
+                    android:icon="@drawable/car"
+                    />
+<!--                <item-->
+<!--                    android:id="@+id/nav_themhangxe"-->
+<!--                    android:title="Thêm hãng xe"-->
+<!--                    />-->
+                <item android:id="@+id/nav_themxe"
+                    android:icon="@drawable/button_color"
+                    android:title="Thêm xe"/>
+            </menu>
+        </item>
+
+
+        <item android:title="Thống kê">
+            <menu>
+                <item
+                    android:id="@+id/nav_topnhanvien"
+                    android:title="Top nhân viên ưu tú"
+                    android:icon="@drawable/top_nguoi"
+                    android:visible="false"
+                    />
+                <item
+                android:id="@+id/nav_topxe"
+                android:title="Top xe bán chạy"
+                    android:icon="@drawable/thong_ke"
+                />
+                <item
+                    android:id="@+id/nav_doanhsonhanvien"
+                    android:title="Doanh số"
+                    android:icon="@drawable/top_doanh_thu"
+                    android:visible="false"
+                    />
+            </menu>
+        </item>
+        <item android:title="Tài khoản"
+            >
+            <menu>
+                <item
+                    android:id="@+id/nav_doimatkhau"
+                    android:title="Đổi mật khẩu"
+                    android:icon="@drawable/key"
+                    />
+                <item
+                    android:id="@+id/nav_dangxuat"
+                    android:icon="@drawable/logout"
+                    android:title="Đăng Xuất"
+                    />
+                <item
+                    android:id="@+id/nav_thoat"
+                    android:icon="@drawable/exit"
+                    android:title="Thoát"
+                    />
+            </menu>
+        </item>
+
+
+
+    </group>
+
+</menu>

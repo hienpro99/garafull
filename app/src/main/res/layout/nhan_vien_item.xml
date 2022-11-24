@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:background="#60AA9B"
+        android:layout_weight="10">
+<!--        <ImageView-->
+<!--            android:layout_width="90dp"-->
+<!--            android:layout_height="107dp"-->
+<!--            android:src="@drawable/img_4"-->
+<!--            android:layout_marginTop="13dp"/>-->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <!--           <TextView-->
+            <!--               android:id="@+id/tvMaNv"-->
+            <!--               android:layout_width="match_parent"-->
+            <!--               android:layout_height="wrap_content"-->
+            <!--               android:textSize="19dp"-->
+            <!--               android:text="Mã Nv"/>-->
+            <TextView
+                android:id="@+id/tvTenNV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TenNV"
+                android:textColor="#FFC107"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSDT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SDT"
+                android:textSize="25sp" />
+            <!--           <TextView-->
+            <!--               android:id="@+id/tvUser"-->
+            <!--               android:layout_width="match_parent"-->
+            <!--               android:layout_height="wrap_content"-->
+            <!--               android:textSize="20dp"-->
+            <!--               android:text="TenDangNhap"/>-->
+            <TextView
+                android:id="@+id/tvMaNv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mã Nv"
+                android:textColor="@color/black"
+                android:textSize="19dp" />
+
+            <TextView
+                android:id="@+id/tvMK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MatKhau"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="1dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+<!--            <ImageView-->
+<!--                android:id="@+id/imgEdit"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_weight="1.5"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:src="@drawable/ic_baseline_edit_24"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                />-->
+            <ImageView
+                android:id="@+id/imgDelete"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="1.5"
+                android:src="@drawable/ic_baseline_delete_24"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="center_vertical"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
