@@ -58,23 +58,25 @@ public class ManGiaoDienActivity extends AppCompatActivity implements Navigation
             ///
 //            navigationView.getMenu().findItem(R.id.nav_home).setVisible(false);
 
-        }else if (user.equalsIgnoreCase("nhanvien")){
+        }else {
+//        else if (user.equalsIgnoreCase("nhanvien")){
             navigationView.getMenu().findItem(R.id.nav_qlkhachhang).setVisible(true);
             navigationView.getMenu().findItem(R.id.nav_hoadon).setVisible(true);
             navigationView.getMenu().findItem(R.id.nav_doanhsonhanvien).setVisible(true);
             navigationView.getMenu().findItem(R.id.nav_qlnhanvien).setVisible(false);
             ////
 //            navigationView.getMenu().findItem(R.id.nav_home).setVisible(false);
-        }else {
-//            navigationView.getMenu().findItem(R.id.nav_themhangxe).setVisible(false);
-            navigationView.getMenu().findItem(R.id.nav_themloaixe).setVisible(false);
-            navigationView.getMenu().findItem(R.id.nav_hoadon).setVisible(true);
-            navigationView.getMenu().findItem(R.id.nav_themxe).setVisible(false);
-            // mở màn hình hiển thị danh sách xe
-            //
-//            replaceFragment(Home.newInstance());
-
         }
+//        else {
+////            navigationView.getMenu().findItem(R.id.nav_themhangxe).setVisible(false);
+//            navigationView.getMenu().findItem(R.id.nav_themloaixe).setVisible(false);
+//            navigationView.getMenu().findItem(R.id.nav_hoadon).setVisible(true);
+//            navigationView.getMenu().findItem(R.id.nav_themxe).setVisible(false);
+//            // mở màn hình hiển thị danh sách xe
+//            //
+////            replaceFragment(Home.newInstance());
+//
+//        }
         View view = navigationView.getHeaderView(0);
         TextView nameuser =view.findViewById(R.id.login_nameuser);
         nameuser.setText("Xin chào : "+ user );

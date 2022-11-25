@@ -87,7 +87,7 @@ public class HoaDonDAO {
     //thong ke top 10
     @SuppressLint("Range")
     public List<Top> getTop() {
-        String sqlTop = "SELECT maXe, count(maXe) as soLuong FROM Xe GROUP BY maXe ORDER BY soLuong DESC LIMIT 10";
+        String sqlTop = "SELECT maXe, count(maXe) as soLuong FROM HoaDon GROUP BY maXe ORDER BY soLuong DESC LIMIT 10";
         List<Top> list = new ArrayList<Top>();
         XeDAO xeDAO = new XeDAO(context);
         Cursor c = db.rawQuery(sqlTop, null);

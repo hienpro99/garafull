@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,8 +63,7 @@ public class Home extends Fragment {
         ActionViewFlipper();
         idDoiMK = view.findViewById(R.id.idDoiMK);
         idDoiMK.setOnClickListener(view1 -> {
-            Intent intent = new Intent(getActivity(),DoiMatKhau.class);
-            startActivity(intent);
+            replaceFragment(DoiMatKhau.newInstance());
         });
         idDangXuat= view.findViewById(R.id.idDangXuat);
         idDangXuat.setOnClickListener(view1 -> {
@@ -96,5 +96,10 @@ public class Home extends Fragment {
         Animation sline_out = AnimationUtils.loadAnimation(getContext(),R.anim.sline_out_right);
         viewFlipper.setInAnimation(sline_in);
         viewFlipper.setOutAnimation(sline_out);
+    }
+    public void replaceFragment(Fragment fragment){
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout,fragment);
+        transaction.commit();
     }
 }

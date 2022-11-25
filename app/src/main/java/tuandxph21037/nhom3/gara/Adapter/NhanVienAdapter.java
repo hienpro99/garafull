@@ -45,7 +45,7 @@ public class NhanVienAdapter extends ArrayAdapter<NhanVien> {
 //            tvMaNv.setText("Tên đăng nhập: "+item.maNv);
 
             tvTenNV = v.findViewById(R.id.tvTenNV);
-            tvTenNV.setText("Tên Thành Viên: "+item.tenNhanVien);
+            tvTenNV.setText("Tên Nhân Viên: "+item.tenNhanVien);
 
             tvSDT = v.findViewById(R.id.tvSDT);
             tvSDT.setText("SDT: "+item.sdt);

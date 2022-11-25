@@ -184,7 +184,7 @@ public class Xefragment extends Fragment {
         if (type != 0) {
             edMaXe.setText(String.valueOf(item.maXe));
             edTenXe.setText(item.tenXe);
-            edSoLuong.setText(item.soLuong);
+            edSoLuong.setText(String.valueOf(item.soLuong));
             edGiaMua.setText(String.valueOf(item.gia));
             for (int i = 0; i < listLoaiXe.size(); i++)
                 if (item.maLoaiXe == (listLoaiXe.get(i).maLoaiXe)) {

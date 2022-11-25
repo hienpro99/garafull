@@ -43,7 +43,8 @@ public class KhachHangfragment extends Fragment {
     KhachHangAdapter adapter;
     KhachHang item;
 
-    String regex = "/(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\\b/";
+//    String regex = "/(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\\b/";
+    String regex = "\"^0{1}[0-9]{9}\"";
 
     public KhachHangfragment() {
         // Required empty public constructor
@@ -166,7 +167,7 @@ public class KhachHangfragment extends Fragment {
         }else if (edSdt.getText().toString().length()<10 || regexsdt.length()>13 || regexsdt.matches(regex)==false  ){
             Toast.makeText(getActivity(),"Please enter "+"\n"+" valid phone number",Toast.LENGTH_SHORT).show();
         }
-
+        check = -1;
         return check;
     }
 }
