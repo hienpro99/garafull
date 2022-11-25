@@ -13,6 +13,8 @@ import java.util.List;
 
 import tuandxph21037.nhom3.gara.DATABASE.XeHelper;
 import tuandxph21037.nhom3.gara.Model.HoaDon;
+import tuandxph21037.nhom3.gara.Model.Top;
+import tuandxph21037.nhom3.gara.Model.Xe;
 
 public class HoaDonDAO {
 
@@ -80,5 +82,39 @@ public class HoaDonDAO {
             list.add(obj);
         }
         return list;
+    }
+    ///
+    //thong ke top 10
+    @SuppressLint("Range")
+    public List<Top> getTop() {
+        String sqlTop = "SELECT maXe, count(maXe) as soLuong FROM Xe GROUP BY maXe ORDER BY soLuong DESC LIMIT 10";
+        List<Top> list = new ArrayList<Top>();
+        XeDAO xeDAO = new XeDAO(context);
+        Cursor c = db.rawQuery(sqlTop, null);
+        while (c.moveToNext()) {
+            Top top = new Top();
+            Xe xe = xeDAO.getID(c.getString(c.getColumnIndex("maXe")));
+            top.tenXe= xe.tenXe;
+            top.soLuong=(Integer.parseInt(c.getString(c.getColumnIndex("soLuong"))));
+            list.add(top);
+        }
+        return list;
+    }
+
+    //top doanh thu
+    @SuppressLint("Range")
+    public int getDoanhThu(String tuNgay, String denNgay) {
+        String sqlDoanhThu = "SELECT SUM(giaTien) as doanhThu FROM HoaDon WHERE ngay BETWEEN ? AND ?";
+        List<Integer> list  = new ArrayList<Integer>();
+        Cursor c = db.rawQuery(sqlDoanhThu, new String[]{tuNgay, denNgay});
+
+        while (c.moveToNext()) {
+            try {
+                list.add(Integer.parseInt(c.getString(c.getColumnIndex("doanhThu"))));
+            } catch (Exception e) {
+                list.add(0);
+            }
+        }
+        return list.get(0);
     }
 }

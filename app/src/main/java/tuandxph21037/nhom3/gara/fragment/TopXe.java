@@ -4,11 +4,17 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+
+import tuandxph21037.nhom3.gara.Adapter.TopXeAdapter;
+import tuandxph21037.nhom3.gara.DAO.HoaDonDAO;
+import tuandxph21037.nhom3.gara.Model.Top;
 import tuandxph21037.nhom3.gara.R;
 
 /**
@@ -17,7 +23,9 @@ import tuandxph21037.nhom3.gara.R;
  * create an instance of this fragment.
  */
 public class TopXe extends Fragment {
-
+    ListView lv;
+    ArrayList<Top> lists;
+    TopXeAdapter adapter;
     public TopXe() {
         // Required empty public constructor
     }
@@ -43,5 +51,10 @@ public class TopXe extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        lv = view.findViewById(R.id.lvTop);
+        HoaDonDAO hoaDonDAO = new HoaDonDAO(getActivity());
+        lists = (ArrayList<Top>) hoaDonDAO.getTop();
+        adapter = new TopXeAdapter(getActivity(), this, lists);
+        lv.setAdapter(adapter);
     }
 }
