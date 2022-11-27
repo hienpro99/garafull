@@ -66,7 +66,7 @@ public class XeAdapter extends ArrayAdapter<Xe> {
             imgDelete = v.findViewById(R.id.imgDelete);
         }
         imgDelete.setOnClickListener(view -> {
-//            fragment.xoa(String.valueOf(item.maLoaiXe));
+            fragment.xoa(String.valueOf(item.maXe));
         });
         return v;
     }

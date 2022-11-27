@@ -75,15 +75,15 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imgEdit"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_weight="1.5"
-        android:layout_marginLeft="15dp"
-        android:src="@drawable/ic_baseline_edit_24"
-        android:layout_gravity="center_vertical"
-        />
+<!--    <ImageView-->
+<!--        android:id="@+id/imgEdit"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_weight="1.5"-->
+<!--        android:layout_marginLeft="15dp"-->
+<!--        android:src="@drawable/ic_baseline_edit_24"-->
+<!--        android:layout_gravity="center_vertical"-->
+<!--        />-->
     <ImageView
         android:id="@+id/imgDelete"
         android:layout_width="0dp"
