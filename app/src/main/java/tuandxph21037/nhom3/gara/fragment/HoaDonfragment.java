@@ -28,12 +28,15 @@ import java.util.Date;
 
 import tuandxph21037.nhom3.gara.Adapter.HoaDonAdapter;
 import tuandxph21037.nhom3.gara.Adapter.KhachHangSpinnerAdapter;
+import tuandxph21037.nhom3.gara.Adapter.NhanVienSpinnerAdapter;
 import tuandxph21037.nhom3.gara.Adapter.XeSpinnerAdapter;
 import tuandxph21037.nhom3.gara.DAO.HoaDonDAO;
 import tuandxph21037.nhom3.gara.DAO.KhachHangDAO;
+import tuandxph21037.nhom3.gara.DAO.NhanVienDAO;
 import tuandxph21037.nhom3.gara.DAO.XeDAO;
 import tuandxph21037.nhom3.gara.Model.HoaDon;
 import tuandxph21037.nhom3.gara.Model.KhachHang;
+import tuandxph21037.nhom3.gara.Model.NhanVien;
 import tuandxph21037.nhom3.gara.Model.Xe;
 import tuandxph21037.nhom3.gara.R;
 
@@ -46,7 +49,7 @@ public class HoaDonfragment extends Fragment {
     ListView lvHoaDon;
     EditText edMaHoaDon;
     TextView tvNgayMua;
-    Spinner spTenKH,spTenXe;
+    Spinner spTenNhanVien,spTenKH,spTenXe;
     TextView tvGia;
     Button btnadd,btnclose;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -57,7 +60,13 @@ public class HoaDonfragment extends Fragment {
 
     FloatingActionButton fab;
     Dialog dialog;
-
+//
+    NhanVienSpinnerAdapter nhanVienSpinnerAdapter;
+    ArrayList<NhanVien> listNhanVien;
+    NhanVienDAO nhanVienDAO;
+    NhanVien nhanVien;
+    String maNhanVien;
+    //
 
     KhachHangSpinnerAdapter khachHangSpinnerAdapter;
     ArrayList<KhachHang> lisKhachHang;
@@ -145,6 +154,7 @@ public class HoaDonfragment extends Fragment {
         dialog = new Dialog(context);
         dialog.setContentView(R.layout.hoa_don_dialog);
         edMaHoaDon = dialog.findViewById(R.id.edMaHoaDon);
+        spTenNhanVien = dialog.findViewById(R.id.spTenNhanVien);
         spTenKH = dialog.findViewById(R.id.spTenKH);
         spTenXe = dialog.findViewById(R.id.spTenXe);
         tvNgayMua = dialog.findViewById(R.id.tvNgay);
@@ -153,6 +163,23 @@ public class HoaDonfragment extends Fragment {
         btnadd = dialog.findViewById(R.id.btnSave);
         tvNgayMua.setText("Ngày Mua: " + sdf.format(new Date()));
 
+        nhanVienDAO = new NhanVienDAO(context);
+        listNhanVien = new ArrayList<NhanVien>();
+        listNhanVien = (ArrayList<NhanVien>)nhanVienDAO.getAll();
+        nhanVienSpinnerAdapter = new NhanVienSpinnerAdapter(context,listNhanVien);
+        spTenNhanVien.setAdapter(nhanVienSpinnerAdapter);
+        spTenNhanVien.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                maNhanVien = String.valueOf(listNhanVien.get(position).maNv);
+                Toast.makeText(context,"chon " + listNhanVien.get(position).tenNhanVien,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         khachHangDAO = new KhachHangDAO(context);
         lisKhachHang = new ArrayList<KhachHang>();

@@ -13,7 +13,9 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 
 import tuandxph21037.nhom3.gara.Adapter.TopNhanVienAdapter;
+import tuandxph21037.nhom3.gara.Adapter.TopXeAdapter;
 import tuandxph21037.nhom3.gara.DAO.HoaDonDAO;
+import tuandxph21037.nhom3.gara.Model.Top;
 import tuandxph21037.nhom3.gara.Model.TopNhanVien;
 import tuandxph21037.nhom3.gara.R;
 
@@ -52,8 +54,8 @@ public class TopNhanVienFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         lv = view.findViewById(R.id.lvTopNhanVien);
-        HoaDonDAO hoaDonDAO1 = new HoaDonDAO(getActivity());
-        list = (ArrayList<TopNhanVien>) hoaDonDAO1.getTopNhanVien();
+        HoaDonDAO hoaDonDAO = new HoaDonDAO(getActivity());
+        list = (ArrayList<TopNhanVien>) hoaDonDAO.getTopNhanVien();
         adapter = new TopNhanVienAdapter(getActivity(), this, list);
         lv.setAdapter(adapter);
     }

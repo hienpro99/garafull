@@ -24,6 +24,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/tvTenNhanVienHD"
+            android:textSize="20dp"
+            android:textColor="#2D5059"
+            android:textStyle="bold"
+            android:text="TenNV"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/tvTenKH"
             android:textSize="20dp"
             android:textColor="#03A9F4"
@@ -76,7 +84,7 @@
     </LinearLayout>
     <ImageView
         android:layout_width="0dp"
-        android:layout_height="105dp"
+        android:layout_height="155dp"
         android:id="@+id/imgDelete"
         android:background="#ffff"
         android:layout_weight="1"

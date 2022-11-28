@@ -19,9 +19,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import tuandxph21037.nhom3.gara.DAO.KhachHangDAO;
+import tuandxph21037.nhom3.gara.DAO.NhanVienDAO;
 import tuandxph21037.nhom3.gara.DAO.XeDAO;
 import tuandxph21037.nhom3.gara.Model.HoaDon;
 import tuandxph21037.nhom3.gara.Model.KhachHang;
+import tuandxph21037.nhom3.gara.Model.NhanVien;
 import tuandxph21037.nhom3.gara.Model.Xe;
 import tuandxph21037.nhom3.gara.R;
 import tuandxph21037.nhom3.gara.fragment.HoaDonfragment;
@@ -32,12 +34,13 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
     private ArrayList<HoaDon> list;
     //
     private ArrayList<HoaDon> list1;
-    TextView tvMaHoaDon, tvTenKH, tvTenXe, tvGiaMua, tvNgaymua;
+    TextView tvMaHoaDon,tvTenNhanVien, tvTenKH, tvTenXe, tvGiaMua, tvNgaymua;
     //
     TextView tvGio;
     ImageView imgDelete;
     LinearLayout lineItem;
     XeDAO xeDAO;
+    NhanVienDAO nhanVienDAO;
     KhachHangDAO khachHangDAO;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     Calendar now = Calendar.getInstance();
@@ -64,10 +67,17 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
         if (item != null){
             tvMaHoaDon = v.findViewById(R.id.tvMaHoaDon);
             tvMaHoaDon.setText("Mã Hóa đơn: "+item.maHoaDon);
+
+            nhanVienDAO = new NhanVienDAO(context);
+            NhanVien nhanVien = nhanVienDAO.getID((item.maNv));
+            tvTenNhanVien = v.findViewById(R.id.tvTenNhanVienHD);
+            tvTenNhanVien.setText("Nhân viên: " + nhanVien.tenNhanVien);
+
             khachHangDAO = new KhachHangDAO(context);
             KhachHang khachHang = khachHangDAO.getID(String.valueOf(item.maKhachHang));
             tvTenKH = v.findViewById(R.id.tvTenKH);
             tvTenKH.setText("Khách hàng: "+khachHang.hoTen);
+
             xeDAO = new XeDAO(context);
             Xe xe = xeDAO.getID(String.valueOf(item.maXe));
             tvTenXe = v.findViewById(R.id.tvTenXe);
@@ -75,8 +85,10 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
 
             tvGiaMua = v.findViewById(R.id.tvGiaMua);
             tvGiaMua.setText("Giá Mua: "+item.giaTien);
+
             tvNgaymua = v.findViewById(R.id.tvngaymua);
             tvNgaymua.setText("Ngày Mua: "+sdf.format(item.ngay));
+
             tvGio = v.findViewById(R.id.tvGio);
             tvGio.setText(("Giờ Tạo Hóa Đơn: "+sdg.format(now.getTime())));
             if (item.giaTien >=5000000){
