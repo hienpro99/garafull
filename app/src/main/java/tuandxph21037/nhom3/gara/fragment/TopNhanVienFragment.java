@@ -4,27 +4,35 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+
+import tuandxph21037.nhom3.gara.Adapter.TopNhanVienAdapter;
+import tuandxph21037.nhom3.gara.DAO.HoaDonDAO;
+import tuandxph21037.nhom3.gara.Model.TopNhanVien;
 import tuandxph21037.nhom3.gara.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TopNhanVien#newInstance} factory method to
+ * Use the {@link TopNhanVienFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TopNhanVien extends Fragment {
-
-    public TopNhanVien() {
+public class TopNhanVienFragment extends Fragment {
+    ListView lv;
+    ArrayList<TopNhanVien> list;
+    TopNhanVienAdapter adapter;
+    public TopNhanVienFragment() {
         // Required empty public constructor
     }
 
 
-    public static TopNhanVien newInstance() {
-        TopNhanVien fragment = new TopNhanVien();
+    public static TopNhanVienFragment newInstance() {
+        TopNhanVienFragment fragment = new TopNhanVienFragment();
         return fragment;
     }
 
@@ -43,5 +51,10 @@ public class TopNhanVien extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        lv = view.findViewById(R.id.lvTopNhanVien);
+        HoaDonDAO hoaDonDAO1 = new HoaDonDAO(getActivity());
+        list = (ArrayList<TopNhanVien>) hoaDonDAO1.getTopNhanVien();
+        adapter = new TopNhanVienAdapter(getActivity(), this, list);
+        lv.setAdapter(adapter);
     }
 }

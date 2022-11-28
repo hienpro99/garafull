@@ -13,7 +13,9 @@ import java.util.List;
 
 import tuandxph21037.nhom3.gara.DATABASE.XeHelper;
 import tuandxph21037.nhom3.gara.Model.HoaDon;
+import tuandxph21037.nhom3.gara.Model.NhanVien;
 import tuandxph21037.nhom3.gara.Model.Top;
+import tuandxph21037.nhom3.gara.Model.TopNhanVien;
 import tuandxph21037.nhom3.gara.Model.Xe;
 
 public class HoaDonDAO {
@@ -84,6 +86,22 @@ public class HoaDonDAO {
         return list;
     }
     ///
+    //Thống kê top nhân viên
+    @SuppressLint("Range")
+    public List<TopNhanVien> getTopNhanVien() {
+        String sqlNhanVien = "SELECT maNv, count(maNv) as soLuong FROM HoaDon GROUP BY maNv ORDER BY soLuong DESC LIMIT 10";
+        List<TopNhanVien> list = new ArrayList<TopNhanVien>();
+        NhanVienDAO nhanVienDAO = new NhanVienDAO(context);
+        Cursor c = db.rawQuery(sqlNhanVien, null);
+        while (c.moveToNext()){
+            TopNhanVien topNhanVien = new TopNhanVien();
+            NhanVien nhanVien = nhanVienDAO.getID(c.getString(c.getColumnIndex("maNv")));
+            topNhanVien.tenNhanVien = nhanVien.tenNhanVien;
+            topNhanVien.soLuong = Integer.parseInt(c.getString(c.getColumnIndex(("soLuong"))));
+            list.add(topNhanVien);
+        }
+        return list;
+    }
     //thong ke top 10
     @SuppressLint("Range")
     public List<Top> getTop() {

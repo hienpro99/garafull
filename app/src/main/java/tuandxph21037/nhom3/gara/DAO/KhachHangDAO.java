@@ -58,7 +58,7 @@ public class KhachHangDAO {
             obj.maKhachHang = Integer.parseInt(c.getString(c.getColumnIndex("maKhachHang")));
             obj.hoTen = c.getString(c.getColumnIndex("hoTen"));
             obj.Tuoi = c.getString(c.getColumnIndex("Tuoi"));
-            obj.sdt = Integer.parseInt(c.getString(c.getColumnIndex("sdt")));
+            obj.sdt = c.getString(c.getColumnIndex("sdt"));
             list.add(obj);
         }
         return list;

@@ -45,6 +45,8 @@ public class NhanVienfragment extends Fragment {
     private NhanVienDAO dao;
     NhanVienAdapter adapter;
     NhanVien item;
+
+    String regex = "^0{1}[0-9]{9}";
     public NhanVienfragment() {
         // Required empty public constructor
     }
@@ -110,7 +112,7 @@ public class NhanVienfragment extends Fragment {
         btnSaveNV.setOnClickListener(view -> {
             item = new NhanVien();
             item.tenNhanVien = edTenNV.getText().toString();
-            item.sdt = Integer.parseInt(edSDT.getText().toString());
+            item.sdt = edSDT.getText().toString();
             item.maNv = edUser.getText().toString();
             item.matKhau =edPass.getText().toString();
             if (validate()>0){
@@ -149,6 +151,7 @@ public class NhanVienfragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Delete");
         builder.setMessage("Bạn có muốn xóa không?");
+        builder.setIcon(R.drawable.ic_baseline_delete_24);
         builder.setCancelable(true);
         builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
@@ -169,8 +172,13 @@ public class NhanVienfragment extends Fragment {
     }
     public int validate(){
         int check = 1;
+        String regexsdt = edSDT.getText().toString();
         if (edTenNV.getText().toString().length()==0 || edSDT.getText().toString().length()==0 ||edUser.getText().toString().length()==0 ||edPass.getText().toString().length()==0){
             Toast.makeText(getContext(), "Bạn Phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            check = -1;
+        }
+        else if (edSDT.getText().toString().length() < 10 || regexsdt.length() > 13 || regexsdt.matches(regex) == false) {
+            Toast.makeText(getActivity(), "Bạn phải nhập đúng số điện thoại", Toast.LENGTH_SHORT).show();
             check = -1;
         }
         return check;

@@ -12,6 +12,7 @@
         android:background="#60AA9B"
         android:layout_weight="10">
         <ImageView
+            android:id="@+id/imgKhachHang"
             android:layout_width="90dp"
             android:layout_height="107dp"
             android:src="@drawable/img_4"
@@ -32,7 +33,9 @@
                 android:id="@+id/tvTenKH"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textSize="25sp"
+                android:textColor="@color/colorPrimaryLight"
+                android:textStyle="bold"
                 android:text="TenKh"/>
             <TextView
                 android:id="@+id/tvTuoi"
@@ -51,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
+                android:textStyle="bold"
                 android:text="Số điện thoại"/>
         </LinearLayout>
         <LinearLayout

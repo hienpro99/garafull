@@ -132,6 +132,7 @@ public class LoaiXefragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Delete");
         builder.setMessage("Bạn có muốn xóa không?");
+        builder.setIcon(R.drawable.ic_baseline_delete_24);
         builder.setCancelable(true);
         builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override

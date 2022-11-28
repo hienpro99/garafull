@@ -25,7 +25,7 @@ import tuandxph21037.nhom3.gara.fragment.Home;
 import tuandxph21037.nhom3.gara.fragment.KhachHangfragment;
 import tuandxph21037.nhom3.gara.fragment.LoaiXefragment;
 import tuandxph21037.nhom3.gara.fragment.NhanVienfragment;
-import tuandxph21037.nhom3.gara.fragment.TopNhanVien;
+import tuandxph21037.nhom3.gara.fragment.TopNhanVienFragment;
 import tuandxph21037.nhom3.gara.fragment.TopXe;
 import tuandxph21037.nhom3.gara.fragment.Xefragment;
 
@@ -114,7 +114,7 @@ public class ManGiaoDienActivity extends AppCompatActivity implements Navigation
 
         }else if (id == R.id.nav_topnhanvien){
             // màn hình top nhân viên
-            replaceFragment(TopNhanVien.newInstance());
+            replaceFragment(TopNhanVienFragment.newInstance());
 
         }else if (id == R.id.nav_topxe){
             // màn hình top xe bán chạy

@@ -22,7 +22,7 @@ public class LoaiXeAdapter extends ArrayAdapter<LoaiXe> {
     LoaiXefragment fragment;
     private ArrayList<LoaiXe> lists;
     TextView tvMaLoaiXe,tvTenLoaiXe;
-    ImageView imgEdit,imgDelete;
+    ImageView imgLoaiXe,imgDelete;
 
     public LoaiXeAdapter(@NonNull Context context, LoaiXefragment fragment, ArrayList<LoaiXe> lists) {
         super(context,0,lists);
@@ -47,13 +47,19 @@ public class LoaiXeAdapter extends ArrayAdapter<LoaiXe> {
             tvTenLoaiXe = v.findViewById(R.id.tvTenLoaiXe);
             tvTenLoaiXe.setText("Tên Loại Xe: "+item.tenLoai);
             imgDelete = v.findViewById(R.id.imgDelete);
-            imgEdit = v.findViewById(R.id.imgEdit);
+
+            imgLoaiXe = v.findViewById(R.id.imgLoaiXe);
+
+            ///ảnh ce
+            if (position % 3 == 0) {
+                imgLoaiXe.setImageResource(R.drawable.loaixe);
+            } else {
+                imgLoaiXe.setImageResource(R.drawable.hangxe);
+            }
+            ///end ảnh
         }
         imgDelete.setOnClickListener(view -> {
             fragment.xoa(String.valueOf(item.maLoaiXe));
-        });
-        imgEdit.setOnClickListener(view -> {
-
         });
         return v;
     }

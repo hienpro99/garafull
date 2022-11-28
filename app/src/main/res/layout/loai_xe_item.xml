@@ -11,6 +11,7 @@
         android:layout_marginTop="10dp"
         android:layout_weight="10">
         <ImageView
+            android:id="@+id/imgLoaiXe"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/img_5"/>
@@ -19,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="10"
             android:layout_margin="20dp"
+            android:background="@color/colorPrimary"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/tvMaLoaiXe"
@@ -32,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
+                android:textColor="#FFC107"
                 android:textStyle="bold"
                 android:text="Loại xe"/>
 <!--            <TextView-->

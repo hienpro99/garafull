@@ -18,7 +18,7 @@ public class XeHelper extends SQLiteOpenHelper {
         String createTableNhanVien="create table NhanVien (" +
                 "maNv TEXT PRIMARY KEY, " +
                 "tenNhanVien TEXT NOT NULL, " +
-                "sdt INTERGER NOT NULL," +
+                "sdt text NOT NULL," +
 //                "User TEXT NOT NULL, "+
                 "matKhau TEXT NOT NULL) ";
         db.execSQL(createTableNhanVien);
@@ -27,7 +27,7 @@ public class XeHelper extends SQLiteOpenHelper {
                 "maKhachHang INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "hoTen text NOT NULL, " +
                 "Tuoi text NOT NULL, " +
-                "sdt INTERGER NOT NULL)";
+                "sdt text NOT NULL)";
         db.execSQL(createTableKhachHang);
 
         String createTableLoaiXe="create table LoaiXe (" +

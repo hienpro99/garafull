@@ -22,7 +22,7 @@ public class KhachHangAdapter extends ArrayAdapter<KhachHang> {
     KhachHangfragment fragment;
     private ArrayList<KhachHang> lists;
     TextView tvMaKH,tvTenKH,tvTuoi,tvSDT;
-    ImageView imgEdit,imgDelete;
+    ImageView imgKhachHang,imgDelete;
 
     public KhachHangAdapter(@NonNull Context context, KhachHangfragment fragment, ArrayList<KhachHang> lists) {
         super(context, 0, lists);
@@ -49,10 +49,18 @@ public class KhachHangAdapter extends ArrayAdapter<KhachHang> {
             tvTuoi.setText("Tuổi: "+item.Tuoi);
             tvSDT = v.findViewById(R.id.tvSDT);
             tvSDT.setText("SDT: "+item.sdt);
+            imgKhachHang = v.findViewById(R.id.imgKhachHang);
+            ///ảnh ce
+            if (position % 3 == 0) {
+                imgKhachHang.setImageResource(R.drawable.user);
+            } else {
+                imgKhachHang.setImageResource(R.drawable.img_2);
+            }
+            ///end ảnh
             imgDelete = v.findViewById(R.id.imgDelete);
 
             //
-            imgEdit = v.findViewById(R.id.imgEdit);
+//            imgEdit = v.findViewById(R.id.imgEdit);
         }
         imgDelete.setOnClickListener(view -> {
             fragment.xoa(String.valueOf(item.maKhachHang));
@@ -60,9 +68,6 @@ public class KhachHangAdapter extends ArrayAdapter<KhachHang> {
 //            lists.remove(position);
         });
         //
-        imgEdit.setOnClickListener(view -> {
-
-        });
         return v;
     }
 }

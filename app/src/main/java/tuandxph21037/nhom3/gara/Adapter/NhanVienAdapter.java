@@ -61,7 +61,7 @@ public class NhanVienAdapter extends ArrayAdapter<NhanVien> {
             imgDelete = v.findViewById(R.id.imgDelete);
 
             //
-            imgEdit = v.findViewById(R.id.imgEdit);
+//            imgEdit = v.findViewById(R.id.imgEdit);
             imgDelete = v.findViewById(R.id.imgDelete);
         }
         imgDelete.setOnClickListener(new View.OnClickListener() {

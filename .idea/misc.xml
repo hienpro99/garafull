@@ -19,7 +19,7 @@
         <entry key="..\:/Gara/app/src/main/res/drawable/search_icon_background.xml" value="0.149" />
         <entry key="..\:/Gara/app/src/main/res/drawable/white_background.xml" value="0.149" />
         <entry key="..\:/Gara/app/src/main/res/drawable/white_rectangle_background.xml" value="0.149" />
-        <entry key="..\:/Gara/app/src/main/res/layout/activity_login2.xml" value="0.1" />
+        <entry key="..\:/Gara/app/src/main/res/layout/activity_login2.xml" value="0.2" />
         <entry key="..\:/Gara/app/src/main/res/layout/activity_main.xml" value="0.2056159420289855" />
         <entry key="..\:/Gara/app/src/main/res/layout/activity_man_giao_dien.xml" value="0.176" />
         <entry key="..\:/Gara/app/src/main/res/layout/activity_splash_screen2.xml" value="0.2056159420289855" />
@@ -49,6 +49,7 @@
         <entry key="..\:/Gara/app/src/main/res/layout/nhan_vien_item.xml" value="0.264" />
         <entry key="..\:/Gara/app/src/main/res/layout/nhan_vien_item_spinner.xml" value="0.13722826086956522" />
         <entry key="..\:/Gara/app/src/main/res/layout/top_item.xml" value="0.18659420289855072" />
+        <entry key="..\:/Gara/app/src/main/res/layout/top_nhan_vien_item.xml" value="0.18659420289855072" />
         <entry key="..\:/Gara/app/src/main/res/layout/xe_dialog.xml" value="0.2" />
         <entry key="..\:/Gara/app/src/main/res/layout/xe_item.xml" value="0.2056159420289855" />
         <entry key="..\:/Gara/app/src/main/res/layout/xe_item_spinner.xml" value="0.22056159420289856" />

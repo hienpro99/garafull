@@ -42,9 +42,9 @@ public class KhachHangfragment extends Fragment {
     static KhachHangDAO dao;
     KhachHangAdapter adapter;
     KhachHang item;
-
+//
 //    String regex = "/(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\\b/";
-    String regex = "\"^0{1}[0-9]{9}\"";
+    String regex = "^0{1}[0-9]{9}";
 
     public KhachHangfragment() {
         // Required empty public constructor
@@ -107,7 +107,7 @@ public class KhachHangfragment extends Fragment {
             item = new KhachHang();
             item.hoTen = edTen.getText().toString();
             item.Tuoi =edTuoi.getText().toString();
-            item.sdt = Integer.parseInt(edSdt.getText().toString());
+            item.sdt = edSdt.getText().toString();
             if (validate()>0){
                 if (type==0){
                     if (dao.insert(item)>0){
@@ -140,6 +140,7 @@ public class KhachHangfragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Delete");
         builder.setMessage("Bạn có muốn xóa không?");
+        builder.setIcon(R.drawable.ic_baseline_delete_24);
         builder.setCancelable(true);
         builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
@@ -161,13 +162,15 @@ public class KhachHangfragment extends Fragment {
     public int validate(){
         int check = 1;
         String regexsdt = edSdt.getText().toString();
+
         if (edTen.getText().toString().length()==0 || edTuoi.getText().toString().length()==0 || edSdt.getText().length()==0){
             Toast.makeText(getContext(), "Bạn Phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             check = -1;
-        }else if (edSdt.getText().toString().length()<10 || regexsdt.length()>13 || regexsdt.matches(regex)==false  ){
+        }else if (edSdt.length()<10 || regexsdt.length()>13 || regexsdt.matches(regex)==false  ){
             Toast.makeText(getActivity(),"Please enter "+"\n"+" valid phone number",Toast.LENGTH_SHORT).show();
+            check = -1;
         }
-        check = -1;
+
         return check;
     }
 }

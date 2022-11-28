@@ -61,7 +61,7 @@ public class NhanVienDAO {
             NhanVien obj = new NhanVien();
             obj.maNv = c.getString(c.getColumnIndex("maNv"));
             obj.tenNhanVien = c.getString(c.getColumnIndex("tenNhanVien"));
-            obj.sdt = Integer.parseInt(c.getString(c.getColumnIndex("sdt")));
+            obj.sdt = c.getString(c.getColumnIndex("sdt"));
 //            obj.User = c.getString(c.getColumnIndex("User"));
             obj.matKhau = c.getString(c.getColumnIndex("matKhau"));
             list.add(obj);

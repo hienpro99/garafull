@@ -6,12 +6,12 @@ public class KhachHang {
     public int maKhachHang;
     public String hoTen;
     public String Tuoi;
-    public int sdt;
+    public String sdt;
 
     public KhachHang() {
     }
 
-    public KhachHang(int maKhachHang, String hoTen, String Tuoi, int sdt) {
+    public KhachHang(int maKhachHang, String hoTen, String Tuoi, String sdt) {
         this.maKhachHang = maKhachHang;
         this.hoTen = hoTen;
         this.Tuoi = Tuoi;
