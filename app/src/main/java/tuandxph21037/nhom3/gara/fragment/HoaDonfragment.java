@@ -240,6 +240,7 @@ public class HoaDonfragment extends Fragment {
         btnadd.setOnClickListener(view -> {
             item = new HoaDon();
             item.maXe = maXe;
+            item.maNv = maNhanVien;
             item.maKhachHang = maKH;
             item.ngay = new Date();
             item.giaTien = Gia;

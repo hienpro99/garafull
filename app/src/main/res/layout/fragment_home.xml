@@ -203,6 +203,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.25"
+                        android:id="@+id/lnNhanVien"
                         android:orientation="vertical">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -235,11 +236,11 @@
                             android:textSize="14sp"
                             android:textStyle="italic|bold" />
                     </LinearLayout>
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.25"
+                        android:id="@+id/lnKhachHang"
                         android:orientation="vertical">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -259,14 +260,15 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/loaixe" />
+                                app:srcCompat="@drawable/khach_hang" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="      Loại xe"
+                            android:text="Khách Hàng"
+                            android:layout_marginLeft="5dp"
                             android:textAlignment="center"
                             android:textColor="#F44336"
                             android:textSize="14sp"
@@ -277,43 +279,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.25"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:background="@drawable/white_background">
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/hangxe" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="   Nhân Viên"
-                            android:textAlignment="center"
-                            android:textColor="#F44336"
-                            android:textSize="14sp"
-                            android:textStyle="italic|bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
+                        android:id="@+id/lnLoaiXe"
                         android:orientation="vertical">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -340,13 +306,53 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Xe"
-                            android:layout_marginLeft="35dp"
+                            android:text="      Loại xe"
                             android:textAlignment="center"
                             android:textColor="#F44336"
                             android:textSize="14sp"
                             android:textStyle="italic|bold" />
                     </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:id="@+id/lnXe"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/white_background">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/hangxe" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="   Xe"
+                            android:paddingStart="25dp"
+                            android:textAlignment="center"
+                            android:textColor="#F44336"
+                            android:textSize="14sp"
+                            android:textStyle="italic|bold" />
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -354,11 +360,11 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal">
-
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.25"
+                        android:id="@+id/lnHoaDon"
                         android:orientation="vertical">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -368,8 +374,8 @@
                             android:background="@drawable/white_background">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginTop="16dp"
                                 android:layout_marginEnd="16dp"
@@ -378,24 +384,26 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                />
+                                app:srcCompat="@drawable/oderlist" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Calendar"
+                            android:text="Hóa Đơn"
+                            android:paddingStart="15dp"
                             android:textAlignment="center"
-                            android:textColor="#2E3D6D"
+                            android:textColor="#F44336"
                             android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textStyle="italic|bold" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.25"
+                        android:id="@+id/lnTopXe"
                         android:orientation="vertical">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
@@ -405,44 +413,8 @@
                             android:background="@drawable/white_background">
 
                             <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginTop="16dp"
-                                android:layout_marginEnd="16dp"
-                                android:layout_marginBottom="16dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="Tips"
-                            android:textAlignment="center"
-                            android:textColor="#2E3D6D"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:orientation="vertical">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:background="@drawable/white_background">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginTop="16dp"
                                 android:layout_marginEnd="16dp"
@@ -451,23 +423,25 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                />
+                                app:srcCompat="@drawable/thong_ke" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Settings"
+                            android:text="Top Xe"
+                            android:paddingStart="15dp"
                             android:textAlignment="center"
-                            android:textColor="#2E3D6D"
+                            android:textColor="#F44336"
                             android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textStyle="italic|bold" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/lnTopNhanVien"
                         android:layout_weight="0.25"
                         android:orientation="vertical">
 
@@ -475,13 +449,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="1"
                             android:background="@drawable/white_background">
 
                             <ImageView
-                                android:id="@+id/imageView7"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginTop="16dp"
                                 android:layout_marginEnd="16dp"
@@ -490,19 +462,57 @@
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                />
+                                app:srcCompat="@drawable/top_nguoi" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <TextView
-                            android:id="@+id/textView7"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Other"
+                            android:text="Top Nhân Viên"
                             android:textAlignment="center"
-                            android:textColor="#2E3D6D"
+                            android:textColor="#F44336"
+                            android:textSize="12sp"
+                            android:textStyle="italic|bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.25"
+                        android:id="@+id/lnDoanhThu"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/white_background">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginEnd="16dp"
+                                android:layout_marginBottom="16dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/top_doanh_thu" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Doanh Thu"
+                            android:paddingStart="5dp"
+                            android:textAlignment="center"
+                            android:textColor="#F44336"
                             android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textStyle="italic|bold" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
