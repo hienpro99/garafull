@@ -139,13 +139,13 @@ public class LoaiXefragment extends Fragment {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dao.delete(Id);
                 capNhatLv();
-                dialog.cancel();
+                dialogInterface.cancel();
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                dialog.cancel();
+                dialogInterface.cancel();
             }
         });
         AlertDialog alert = builder.create();

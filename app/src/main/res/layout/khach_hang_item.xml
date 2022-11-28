@@ -54,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
+                android:textColor="@drawable/button_color"
                 android:textStyle="bold"
                 android:text="Số điện thoại"/>
         </LinearLayout>
@@ -71,8 +72,8 @@
 <!--                android:src="@drawable/ic_baseline_edit_24"/>-->
             <ImageView
                 android:id="@+id/imgDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="20dp"
                 android:src="@drawable/ic_baseline_delete_24"/>
         </LinearLayout>

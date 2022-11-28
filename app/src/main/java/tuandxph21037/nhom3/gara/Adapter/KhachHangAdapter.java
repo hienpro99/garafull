@@ -44,7 +44,7 @@ public class KhachHangAdapter extends ArrayAdapter<KhachHang> {
             tvMaKH.setText("Mã Khách Hàng: "+item.maKhachHang);
 
             tvTenKH = v.findViewById(R.id.tvTenKH);
-            tvTenKH.setText("Tên Thành Viên: "+item.hoTen);
+            tvTenKH.setText("Tên Khách : "+item.hoTen);
             tvTuoi = v.findViewById(R.id.tvTuoi);
             tvTuoi.setText("Tuổi: "+item.Tuoi);
             tvSDT = v.findViewById(R.id.tvSDT);
@@ -54,7 +54,7 @@ public class KhachHangAdapter extends ArrayAdapter<KhachHang> {
             if (position % 3 == 0) {
                 imgKhachHang.setImageResource(R.drawable.user);
             } else {
-                imgKhachHang.setImageResource(R.drawable.img_2);
+                imgKhachHang.setImageResource(R.drawable.img_1);
             }
             ///end ảnh
             imgDelete = v.findViewById(R.id.imgDelete);
