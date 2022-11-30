@@ -33,7 +33,7 @@ import tuandxph21037.nhom3.gara.R;
  */
 public class Home extends Fragment {
     ViewFlipper viewFlipper;
-    LinearLayout idDoiMK,idDangXuat,idThoat;
+    LinearLayout idDoiMK,idDangXuat,idThoat,lnNhanVien,lnKhachHang,lnLoaiXe,lnXe,lnHoaDon,lnTopXe,lnTopNhanVien,lnDoanhThu;
     public Home() {
         // Required empty public constructor
     }
@@ -77,6 +77,41 @@ public class Home extends Fragment {
             startMain.addCategory(Intent.CATEGORY_HOME);
             startActivity(startMain);
         });
+        lnNhanVien = view.findViewById(R.id.lnNhanVien);
+        lnNhanVien.setOnClickListener(view1 -> {
+            replaceFragment(NhanVienfragment.newInstance());
+        });
+        lnKhachHang = view.findViewById(R.id.lnKhachHang);
+        lnKhachHang.setOnClickListener(view1 -> {
+            replaceFragment(KhachHangfragment.newInstance());
+        });
+        lnLoaiXe = view.findViewById(R.id.lnLoaiXe);
+        lnLoaiXe.setOnClickListener(view1 -> {
+            replaceFragment(LoaiXefragment.newInstance());
+        });
+        lnXe = view.findViewById(R.id.lnXe);
+        lnXe.setOnClickListener(view1 -> {
+            replaceFragment(Xefragment.newInstance());
+        });
+        lnHoaDon = view.findViewById(R.id.lnHoaDon);
+        lnHoaDon.setOnClickListener(view1 -> {
+            replaceFragment(HoaDonfragment.newInstance());
+        });
+        lnTopXe = view.findViewById(R.id.lnTopXe);
+        lnTopXe.setOnClickListener(view1 -> {
+            replaceFragment(TopXe.newInstance());
+        });
+
+        lnTopNhanVien = view.findViewById(R.id.lnTopNhanVien);
+                lnTopNhanVien.setOnClickListener(view1 -> {
+            replaceFragment(TopNhanVienFragment.newInstance());
+        });
+        lnDoanhThu = view.findViewById(R.id.lnDoanhThu);
+        lnDoanhThu.setOnClickListener(view1 -> {
+            replaceFragment(DoanhSoNhanVien.newInstance());
+        });
+
+
     }
 
     private void ActionViewFlipper() {
