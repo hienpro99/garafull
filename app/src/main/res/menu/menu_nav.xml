@@ -4,9 +4,7 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_baseline_home_24"
-            android:title="Home" >
-
-        </item>
+            android:title="Home"/>
         <item
             android:id="@+id/nav_qlnhanvien"
             android:title="Quản lý nhân viên"
@@ -21,6 +19,7 @@
             android:title="Hóa đơn"
             android:icon="@drawable/bill"
             android:visible="false"/>
+    </group>
         <item
             android:title="Sản phẩm" >
             <menu>
@@ -29,17 +28,11 @@
                     android:title="Thêm loại xe"
                     android:icon="@drawable/car"
                     />
-<!--                <item-->
-<!--                    android:id="@+id/nav_themhangxe"-->
-<!--                    android:title="Thêm hãng xe"-->
-<!--                    />-->
                 <item android:id="@+id/nav_themxe"
-                    android:icon="@drawable/button_color"
+                    android:icon="@drawable/ic_baseline_local_car_wash_24"
                     android:title="Thêm xe"/>
             </menu>
         </item>
-
-
         <item android:title="Thống kê">
             <menu>
                 <item
@@ -61,8 +54,7 @@
                     />
             </menu>
         </item>
-        <item android:title="Tài khoản"
-            >
+        <item android:title="Tài khoản">
             <menu>
                 <item
                     android:id="@+id/nav_doimatkhau"
@@ -84,6 +76,6 @@
 
 
 
-    </group>
+<!--    </group>-->
 
 </menu>
