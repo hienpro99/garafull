@@ -57,16 +57,14 @@ public class LoginActivity2 extends AppCompatActivity {
         strPass = edPassword.getText().toString();
         if (strUser.isEmpty() || strPass.isEmpty()){
             Toast.makeText(this, "Tên đăng nhập và mật khẩu không được bỏ trống", Toast.LENGTH_SHORT).show();
-        }else {
-            if (strUser.equals("admin") || strPass.equals("admin")){
+        }else if (strUser.equals("admin") && strPass.equals("admin")){
                 Toast.makeText(this, "Login thành công", Toast.LENGTH_SHORT).show();
                 rememberUser(strUser,strPass,chkRememberPass.isChecked());
                 Intent i = new Intent(getApplicationContext(),ManGiaoDienActivity.class);
                 i.putExtra("user",strUser);
                 startActivity(i);
                 finish();
-            }
-            if (dao.checkLogin(strUser,strPass) > 0){
+            }else if (dao.checkLogin(strUser,strPass) > 0){
                 Toast.makeText(this, "Login thành công", Toast.LENGTH_SHORT).show();
                 rememberUser(strUser,strPass,chkRememberPass.isChecked());
                 Intent i = new Intent(getApplicationContext(),ManGiaoDienActivity.class);
@@ -75,8 +73,7 @@ public class LoginActivity2 extends AppCompatActivity {
                 finish();
             }else {
                 Toast.makeText(this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
-            }
-        }
+        }//end else
     }
 
     private void rememberUser(String strUser, String strPass, boolean status) {

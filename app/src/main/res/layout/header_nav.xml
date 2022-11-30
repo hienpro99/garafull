@@ -2,27 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="180dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/img_2"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/imgav"
+<!--    <ImageView-->
+<!--        android:id="@+id/imgav"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="110dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginBottom="5dp"-->
+<!--        android:src="@drawable/img_1" />-->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
         android:layout_width="100dp"
-        android:layout_marginTop="10dp"
         android:layout_height="110dp"
-        android:layout_centerHorizontal="true"
+        app:lottie_autoPlay="true"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/img_1" />
+        android:layout_centerHorizontal="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/people" />
     <TextView
         android:id="@+id/login_nameuser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/imgav"
+        android:layout_below="@+id/animationView"
         android:text="Hello"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
         android:textStyle="bold"
         android:textColor="#E4E3E6"
-        android:textSize="14dp" />
+        android:textSize="16dp" />
 
 </RelativeLayout>
