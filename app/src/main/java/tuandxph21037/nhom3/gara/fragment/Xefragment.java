@@ -110,9 +110,15 @@ public class Xefragment extends Fragment {
         lvXe = view.findViewById(R.id.lvXe);
         xeDAO = new XeDAO(getActivity());
         capNhatLv();
+        loaiXeDAO= new LoaiXeDAO(getActivity());
+
         fab = view.findViewById(R.id.fab);
         fab.setOnClickListener(view1 -> {
-            openDiaLog(getActivity(), 0);
+            if(loaiXeDAO.getAll().size()==0){
+                Toast.makeText(getActivity(), "Bạn cần thêm loại xe trước", Toast.LENGTH_SHORT).show();
+            }else{
+                openDiaLog(getActivity(), 0);
+            }
         });
         lvXe.setOnItemLongClickListener((parent, view1, position, id) -> {
             item = list.get(position);
@@ -226,14 +232,15 @@ public class Xefragment extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                item = new Xe();
-                item.tenXe = edTenXe.getText().toString();
-                item.soLuong = Integer.parseInt(edSoLuong.getText().toString());
-                item.gia = Integer.parseInt(edGiaMua.getText().toString());
-                item.maLoaiXe = maLoaiXe;
-                imageViewtoByte(imageView);
-                item.img=imageViewtoByte(imageView);
+
                 if (validate() > 0) {
+                    item = new Xe();
+                    item.tenXe = edTenXe.getText().toString();
+                    item.soLuong = Integer.parseInt(edSoLuong.getText().toString());
+                    item.gia = Integer.parseInt(edGiaMua.getText().toString());
+                    item.maLoaiXe = maLoaiXe;
+                    imageViewtoByte(imageView);
+                    item.img=imageViewtoByte(imageView);
                     if (type == 0) {
                         if (xeDAO.insert(item) > 0) {
                             Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
@@ -269,7 +276,7 @@ public class Xefragment extends Fragment {
 
     public int validate() {
         int check = 1;
-        if (edTenXe.getText().toString().length() == 0 || edGiaMua.getText().toString().length() == 0) {
+        if (edTenXe.getText().toString().length() == 0 || edGiaMua.getText().toString().equals("")|| edSoLuong.getText().toString().equals("")){
             Toast.makeText(getContext(), "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             check = -1;
         }

@@ -89,8 +89,8 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
             tvNgaymua = v.findViewById(R.id.tvngaymua);
             tvNgaymua.setText("Ngày Mua: "+sdf.format(item.ngay));
 
-            tvGio = v.findViewById(R.id.tvGio);
-            tvGio.setText(("Giờ Tạo Hóa Đơn: "+sdg.format(now.getTime())));
+//            tvGio = v.findViewById(R.id.tvGio);
+//            tvGio.setText(("Giờ Tạo Hóa Đơn: "+sdg.format(now.getTime())));
             if (item.giaTien >=5000000){
                 tvMaHoaDon.setTextColor(Color.RED);
                 tvGiaMua.setTextColor(Color.RED);
@@ -106,7 +106,6 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 fragment.xoa(String.valueOf(item.maHoaDon));
             }
         });

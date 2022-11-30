@@ -3,6 +3,7 @@ package tuandxph21037.nhom3.gara.Model;
 public class TopNhanVien {
     public String tenNhanVien;
     public int soLuong;
+    public int doanhSo;
 
 
     public TopNhanVien() {

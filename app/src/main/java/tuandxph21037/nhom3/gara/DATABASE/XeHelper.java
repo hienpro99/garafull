@@ -8,7 +8,7 @@ import androidx.annotation.Nullable;
 
 public class XeHelper extends SQLiteOpenHelper {
     static final String dbName="Gara";
-    static final int dbVersion=1;
+    static final int dbVersion=2;
     public XeHelper(Context context) {
         super(context, dbName, null, dbVersion);
     }
@@ -52,11 +52,11 @@ public class XeHelper extends SQLiteOpenHelper {
                 "ngay DATE NOT NULL, " +
                 "giaTien INTERGER NOT NULL)";
         db.execSQL(createTableHoaDon);
-        db.execSQL(INSERT_NHAN_VIEN);
+//        db.execSQL(INSERT_NHAN_VIEN);
 
     }
-    public static final String INSERT_NHAN_VIEN = "insert into NhanVien(maNv,tenNhanVien,sdt,matKhau) values" +
-            "('admin','hienadmin','0923657778','admin')";
+//    public static final String INSERT_NHAN_VIEN = "insert into NhanVien(maNv,tenNhanVien,sdt,matKhau) values" +
+//            "('admin','hienadmin','0923657778','admin')";
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
