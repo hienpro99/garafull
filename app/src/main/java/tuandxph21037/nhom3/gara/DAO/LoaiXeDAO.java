@@ -57,4 +57,6 @@ public class LoaiXeDAO {
         }
         return list;
     }
+
+
 }

@@ -136,7 +136,7 @@
             android:id="@+id/btnSaveKH"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thêm Khách hàng"
+            android:text="Lưu"
             android:background="@drawable/button_color"
             android:layout_marginHorizontal="20dp"
             android:layout_weight="1"/>

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tuandxph21037.nhom3.gara.DATABASE.XeHelper;
+import tuandxph21037.nhom3.gara.Model.HoaDon;
 import tuandxph21037.nhom3.gara.Model.Xe;
 
 public class XeDAO {
@@ -37,7 +38,6 @@ public class XeDAO {
         values.put("tenXe",obj.tenXe);
         values.put("img",obj.img);
         values.put("soLuong",obj.soLuong);
-
         values.put("gia",obj.gia);
         return db.update("Xe",values,"maXe=?",new String[]{String.valueOf(obj.maXe)});
     }
@@ -74,4 +74,10 @@ public class XeDAO {
         }
         return list;
     }
+    public Xe checkXeLX(String maloaixe){
+        String sql = "SELECT * FROM Xe WHERE maLoaiXe=?";
+        List<Xe> list = getData(sql, maloaixe);
+        return list.get(0);
+    }
+
 }

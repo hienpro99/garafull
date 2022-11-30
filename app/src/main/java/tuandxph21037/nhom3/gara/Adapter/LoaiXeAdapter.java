@@ -1,18 +1,22 @@
 package tuandxph21037.nhom3.gara.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+import tuandxph21037.nhom3.gara.DAO.XeDAO;
 import tuandxph21037.nhom3.gara.Model.LoaiXe;
 import tuandxph21037.nhom3.gara.R;
 import tuandxph21037.nhom3.gara.fragment.LoaiXefragment;
@@ -23,6 +27,7 @@ public class LoaiXeAdapter extends ArrayAdapter<LoaiXe> {
     private ArrayList<LoaiXe> lists;
     TextView tvMaLoaiXe,tvTenLoaiXe;
     ImageView imgLoaiXe,imgDelete;
+    XeDAO xeDao;
 
     public LoaiXeAdapter(@NonNull Context context, LoaiXefragment fragment, ArrayList<LoaiXe> lists) {
         super(context,0,lists);
@@ -59,8 +64,25 @@ public class LoaiXeAdapter extends ArrayAdapter<LoaiXe> {
             ///end ảnh
         }
         imgDelete.setOnClickListener(view -> {
-            fragment.xoa(String.valueOf(item.maLoaiXe));
+            xeDao= new XeDAO(context);
+            if(xeDao.checkXeLX(String.valueOf(item.maLoaiXe))==null){
+                fragment.xoa(String.valueOf(item.maLoaiXe));
+            }else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Warning!");
+                builder.setMessage("Xe trong Loại xe này đang được đăng bán\n" + "Không thể xóa!");
+                builder.setIcon(R.drawable.ic_baseline_delete_24);
+                builder.setCancelable(true);
+                builder.setPositiveButton("Đã hiểu", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.show();
+            }
         });
+
         return v;
     }
 }

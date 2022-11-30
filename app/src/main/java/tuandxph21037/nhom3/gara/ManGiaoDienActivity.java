@@ -67,16 +67,7 @@ public class ManGiaoDienActivity extends AppCompatActivity implements Navigation
             ////
 //            navigationView.getMenu().findItem(R.id.nav_home).setVisible(false);
         }
-//        else {
-////            navigationView.getMenu().findItem(R.id.nav_themhangxe).setVisible(false);
-//            navigationView.getMenu().findItem(R.id.nav_themloaixe).setVisible(false);
-//            navigationView.getMenu().findItem(R.id.nav_hoadon).setVisible(true);
-//            navigationView.getMenu().findItem(R.id.nav_themxe).setVisible(false);
-//            // mở màn hình hiển thị danh sách xe
-//            //
-////            replaceFragment(Home.newInstance());
-//
-//        }
+
         View view = navigationView.getHeaderView(0);
         TextView nameuser =view.findViewById(R.id.login_nameuser);
         nameuser.setText("Xin chào : "+ user );
@@ -158,6 +149,7 @@ public class ManGiaoDienActivity extends AppCompatActivity implements Navigation
     public void replaceFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout,fragment);
+        transaction.addToBackStack(Home.newInstance().getClass().getSimpleName());
         transaction.commit();
     }
 }

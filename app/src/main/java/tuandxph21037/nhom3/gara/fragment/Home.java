@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tuandxph21037.nhom3.gara.LoginActivity2;
+import tuandxph21037.nhom3.gara.Model.NhanVien;
 import tuandxph21037.nhom3.gara.R;
 
 /**
@@ -77,6 +78,28 @@ public class Home extends Fragment {
             startMain.addCategory(Intent.CATEGORY_HOME);
             startActivity(startMain);
         });
+        view.findViewById(R.id.nhanVienHome).setOnClickListener(view1->{
+            replaceFragment(NhanVienfragment.newInstance());
+        });
+        view.findViewById(R.id.khachHangHome).setOnClickListener(view1->{
+            replaceFragment(KhachHangfragment.newInstance());
+        });
+        view.findViewById(R.id.loaiXeHome).setOnClickListener(view1->{
+            replaceFragment(LoaiXefragment.newInstance());
+        });
+        view.findViewById(R.id.xeHome).setOnClickListener(view1->{
+            replaceFragment(Xefragment.newInstance());
+        });
+        view.findViewById(R.id.hoaDonHome).setOnClickListener(view1->{
+            replaceFragment(HoaDonfragment.newInstance());
+        });
+        view.findViewById(R.id.topXeHome).setOnClickListener(view1->{
+            replaceFragment(TopXe.newInstance());
+        });
+        view.findViewById(R.id.doanhSoHome).setOnClickListener(view1->{
+            replaceFragment(DoanhSoNhanVien.newInstance());
+        });
+
     }
 
     private void ActionViewFlipper() {
@@ -100,6 +123,7 @@ public class Home extends Fragment {
     public void replaceFragment(Fragment fragment){
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout,fragment);
+        transaction.addToBackStack(Home.newInstance().getClass().getSimpleName());
         transaction.commit();
     }
 }

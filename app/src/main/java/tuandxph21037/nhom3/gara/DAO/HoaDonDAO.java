@@ -89,7 +89,7 @@ public class HoaDonDAO {
     //Thống kê top nhân viên
     @SuppressLint("Range")
     public List<TopNhanVien> getTopNhanVien() {
-        String sqlNhanVien = "SELECT maNv, count(maNv) as soLuong FROM HoaDon GROUP BY maNv ORDER BY soLuong DESC LIMIT 10";
+        String sqlNhanVien = "SELECT maNv, count(maNv) as soLuong,sum(giaTien) as tongTien FROM HoaDon GROUP BY maNv ORDER BY tongTien DESC LIMIT 10";
         List<TopNhanVien> list = new ArrayList<TopNhanVien>();
         NhanVienDAO nhanVienDAO = new NhanVienDAO(context);
         Cursor c = db.rawQuery(sqlNhanVien, null);
@@ -98,6 +98,7 @@ public class HoaDonDAO {
             NhanVien nhanVien = nhanVienDAO.getID(c.getString(c.getColumnIndex("maNv")));
             topNhanVien.tenNhanVien = nhanVien.tenNhanVien;
             topNhanVien.soLuong = Integer.parseInt(c.getString(c.getColumnIndex(("soLuong"))));
+            topNhanVien.doanhSo = Integer.parseInt(c.getString(c.getColumnIndex(("tongTien"))));
             list.add(topNhanVien);
         }
         return list;
@@ -133,6 +134,11 @@ public class HoaDonDAO {
                 list.add(0);
             }
         }
+        return list.get(0);
+    }
+    public HoaDon checkXeHD(String maxe){
+        String sql = "SELECT * FROM HoaDon WHERE maXe=?";
+        List<HoaDon> list = getData(sql, maxe);
         return list.get(0);
     }
 }

@@ -108,9 +108,18 @@ public class HoaDonfragment extends Fragment {
         lvHoaDon = view.findViewById(R.id.lvHoaDon);
         fab = view.findViewById(R.id.fab);
         dao = new HoaDonDAO(getActivity());
+        xeDAO= new XeDAO(getActivity());
+        khachHangDAO = new KhachHangDAO(getActivity());
+
         capNhatLv();
         fab.setOnClickListener(view1 -> {
-            openDialog(getActivity(),0);
+            if(xeDAO.getAll().size()==0){
+                Toast.makeText(getActivity(), "Bạn cần thêm Xe trước khi tạo hóa đơn", Toast.LENGTH_SHORT).show();
+            }else if (khachHangDAO.getAll().size()==0){
+                Toast.makeText(getActivity(), "Bạn cần thêm Khách hàng trước khi tạo hóa đơn", Toast.LENGTH_SHORT).show();
+            } else{
+                openDialog(getActivity(), 0);
+            }
         });
         lvHoaDon.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -172,7 +181,7 @@ public class HoaDonfragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 maNhanVien = String.valueOf(listNhanVien.get(position).maNv);
-                Toast.makeText(context,"chon " + listNhanVien.get(position).tenNhanVien,Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Nhân Viên: " + listNhanVien.get(position).tenNhanVien,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -190,7 +199,7 @@ public class HoaDonfragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 maKH = lisKhachHang.get(i).maKhachHang;
-                Toast.makeText(context, "chọn "+lisKhachHang.get(i).hoTen, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Khách hàng: "+lisKhachHang.get(i).hoTen, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -209,7 +218,7 @@ public class HoaDonfragment extends Fragment {
                 maXe = listXe.get(i).maXe;
                 Gia= listXe.get(i).gia;
                 tvGia.setText("Giá tiền: "+Gia);
-                Toast.makeText(context, "chọn: "+listXe.get(i).tenXe, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Xe: "+listXe.get(i).tenXe, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -238,28 +247,37 @@ public class HoaDonfragment extends Fragment {
             tvGia.setText("Giá Tiền: "+item.giaTien);
         }
         btnadd.setOnClickListener(view -> {
-            item = new HoaDon();
-            item.maXe = maXe;
-            item.maNv = maNhanVien;
-            item.maKhachHang = maKH;
-            item.ngay = new Date();
-            item.giaTien = Gia;
-            if (type == 0){
-                if (dao.insert(item) > 0){
-                    Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(context, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+
+            if (type == 0) {
+                Xe xe = xeDAO.getID(String.valueOf(maXe));
+                if (xe.soLuong == 0) {
+                    Toast.makeText(context, "Xe đã hết hàng vui lòng chọn xe khác", Toast.LENGTH_SHORT).show();
+                } else {
+                    xe.soLuong = xe.soLuong - 1;
+                    item = new HoaDon();
+                    item.maXe = maXe;
+                    item.maNv = maNhanVien;
+                    item.maKhachHang = maKH;
+                    item.ngay = new Date();
+                    item.giaTien = Gia;
+                    if (dao.insert(item) > 0 && xeDAO.update(xe) > 0) {
+                        Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }else {
-                item.maHoaDon = Integer.parseInt(edMaHoaDon.getText().toString());
-                if (dao.update(item)>0){
-                    Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(context, "Sửa thất bại", Toast.LENGTH_SHORT).show();
+                    item.maHoaDon = Integer.parseInt(edMaHoaDon.getText().toString());
+                    if (dao.update(item)>0){
+                        Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(context, "Sửa thất bại", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-            capNhatLv();
-            dialog.dismiss();
+                capNhatLv();
+                dialog.dismiss();
+
+
         });
 
         dialog.show();
