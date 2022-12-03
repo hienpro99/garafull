@@ -34,7 +34,7 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
     private ArrayList<HoaDon> list;
     //
     private ArrayList<HoaDon> list1;
-    TextView tvMaHoaDon,tvTenNhanVien, tvTenKH, tvTenXe, tvGiaMua, tvNgaymua;
+    TextView tvMaHoaDon,tvBienSoHD, tvTenKH, tvTenXe, tvGiaMua, tvNgaymua, tvTenNhanVien;
     //
     TextView tvGio;
     ImageView imgDelete;
@@ -42,7 +42,7 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
     XeDAO xeDAO;
     NhanVienDAO nhanVienDAO;
     KhachHangDAO khachHangDAO;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     Calendar now = Calendar.getInstance();
     String strDateFormat24 = "HH:mm:ss a";
     SimpleDateFormat sdg = new SimpleDateFormat(strDateFormat24);
@@ -68,11 +68,6 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
             tvMaHoaDon = v.findViewById(R.id.tvMaHoaDon);
             tvMaHoaDon.setText("Mã Hóa đơn: "+item.maHoaDon);
 
-            nhanVienDAO = new NhanVienDAO(context);
-            NhanVien nhanVien = nhanVienDAO.getID((item.maNv));
-            tvTenNhanVien = v.findViewById(R.id.tvTenNhanVienHD);
-            tvTenNhanVien.setText("Nhân viên: " + nhanVien.tenNhanVien);
-
             khachHangDAO = new KhachHangDAO(context);
             KhachHang khachHang = khachHangDAO.getID(String.valueOf(item.maKhachHang));
             tvTenKH = v.findViewById(R.id.tvTenKH);
@@ -83,14 +78,20 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
             tvTenXe = v.findViewById(R.id.tvTenXe);
             tvTenXe.setText("Tên Xe: "+xe.tenXe);
 
+            tvTenNhanVien= v.findViewById(R.id.tvTenNv);
+            tvTenNhanVien.setText("Nhân Viên: "+item.maNv);
+
+            tvBienSoHD = v.findViewById(R.id.tvBienSoHD);
+            tvBienSoHD.setText("Biển số: " + item.bienSoHD);
+
             tvGiaMua = v.findViewById(R.id.tvGiaMua);
             tvGiaMua.setText("Giá Mua: "+item.giaTien);
 
             tvNgaymua = v.findViewById(R.id.tvngaymua);
             tvNgaymua.setText("Ngày Mua: "+sdf.format(item.ngay));
 
-            tvGio = v.findViewById(R.id.tvGio);
-            tvGio.setText(("Giờ Tạo Hóa Đơn: "+sdg.format(now.getTime())));
+//            tvGio = v.findViewById(R.id.tvGio);
+//            tvGio.setText(("Giờ Tạo Hóa Đơn: "+sdg.format(now.getTime())));
             if (item.giaTien >=5000000){
                 tvMaHoaDon.setTextColor(Color.RED);
                 tvGiaMua.setTextColor(Color.RED);
@@ -99,8 +100,7 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
             }else {
                 tvMaHoaDon.setTextColor(Color.BLUE);
                 tvGiaMua.setTextColor(Color.BLUE);
-                tvGio.setTextColor(Color.YELLOW);
-                v.findViewById(R.id.lineitem).setBackgroundColor(Color.RED);
+                v.findViewById(R.id.lineitem).setBackgroundColor(Color.YELLOW);
             }
             imgDelete = v.findViewById(R.id.imgDelete);
         }

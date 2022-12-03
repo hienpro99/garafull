@@ -40,8 +40,7 @@ public class XeHelper extends SQLiteOpenHelper {
                 "tenXe text NOT NULL," +
                 "maLoaiXe INTEGER REFERENCES LoaiXe(maLoaiXe)," +
                 "img BLOB NOT NULL," +
-                "soKhungSoMay text NOT NULL," +
-                "soLuong INTEGER NOT NULL, " +
+                "bienSo text NOT NULL, " +
                 "gia INTEGER NOT NULL )";
         db.execSQL(createTableXe);
 
@@ -51,7 +50,8 @@ public class XeHelper extends SQLiteOpenHelper {
                 "maKhachHang INTEGER REFERENCES KhachHang(maKhachHang), " +
                 "maXe INTEGER REFERENCES Xe(maXe), " +
                 "ngay DATE NOT NULL, " +
-                "giaTien INTERGER NOT NULL)";
+                "giaTien INTERGER NOT NULL," +
+                "bienSoHD TEXT NOT NULL)";
         db.execSQL(createTableHoaDon);
 //        db.execSQL(INSERT_NHAN_VIEN);
 

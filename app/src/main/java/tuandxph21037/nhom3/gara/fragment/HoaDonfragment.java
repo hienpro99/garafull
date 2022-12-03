@@ -34,6 +34,9 @@ import tuandxph21037.nhom3.gara.DAO.HoaDonDAO;
 import tuandxph21037.nhom3.gara.DAO.KhachHangDAO;
 import tuandxph21037.nhom3.gara.DAO.NhanVienDAO;
 import tuandxph21037.nhom3.gara.DAO.XeDAO;
+import tuandxph21037.nhom3.gara.LoginActivity2;
+import tuandxph21037.nhom3.gara.MainActivity;
+import tuandxph21037.nhom3.gara.ManGiaoDienActivity;
 import tuandxph21037.nhom3.gara.Model.HoaDon;
 import tuandxph21037.nhom3.gara.Model.KhachHang;
 import tuandxph21037.nhom3.gara.Model.NhanVien;
@@ -46,13 +49,14 @@ import tuandxph21037.nhom3.gara.R;
  * create an instance of this fragment.
  */
 public class HoaDonfragment extends Fragment {
+    ManGiaoDienActivity mActivity2;
     ListView lvHoaDon;
     EditText edMaHoaDon;
-    TextView tvNgayMua;
-    Spinner spTenNhanVien,spTenKH,spTenXe;
-    TextView tvGia;
+    TextView tvNgayMua, tvTenNhanVien;
+    Spinner spTenKH,spTenXe;
+    TextView tvGia,tvBienSoHDDL;
     Button btnadd,btnclose;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     HoaDon item;
     ArrayList<HoaDon> list;
     static HoaDonDAO dao;
@@ -60,7 +64,7 @@ public class HoaDonfragment extends Fragment {
 
     FloatingActionButton fab;
     Dialog dialog;
-//
+    //
     NhanVienSpinnerAdapter nhanVienSpinnerAdapter;
     ArrayList<NhanVien> listNhanVien;
     NhanVienDAO nhanVienDAO;
@@ -78,8 +82,10 @@ public class HoaDonfragment extends Fragment {
     ArrayList<Xe> listXe;
     XeDAO xeDAO;
     Xe Xe;
+    String bienSo;
     int maXe,Gia;
     int positionKH,positionXe;
+    String tennv="";
     public HoaDonfragment() {
         // Required empty public constructor
     }
@@ -105,6 +111,9 @@ public class HoaDonfragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mActivity2 = (ManGiaoDienActivity) getActivity();
+        String tennv = mActivity2.getTennv();
+        Toast.makeText(mActivity2, ""+tennv, Toast.LENGTH_SHORT).show();
         lvHoaDon = view.findViewById(R.id.lvHoaDon);
         fab = view.findViewById(R.id.fab);
         dao = new HoaDonDAO(getActivity());
@@ -131,9 +140,18 @@ public class HoaDonfragment extends Fragment {
         });
     }
     void capNhatLv() {
-        list = (ArrayList<HoaDon>) dao.getAll();
-        adapter = new HoaDonAdapter(getActivity(),this,list);
-        lvHoaDon.setAdapter(adapter);
+        mActivity2 = (ManGiaoDienActivity) getActivity();
+        String tennv = mActivity2.getTennv();
+        if(tennv.equals("admin")){
+            list = (ArrayList<HoaDon>) dao.getAllad();
+            adapter = new HoaDonAdapter(getActivity(),this,list);
+            lvHoaDon.setAdapter(adapter);
+        }else{
+            list = (ArrayList<HoaDon>) dao.getAllnv(tennv);
+            adapter = new HoaDonAdapter(getActivity(),this,list);
+            lvHoaDon.setAdapter(adapter);
+        }
+
     }
     public void xoa(final String Id){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -160,10 +178,13 @@ public class HoaDonfragment extends Fragment {
     }
 
     protected void openDialog(final Context context, final int type){
+        String tennv = mActivity2.getTennv();
         dialog = new Dialog(context);
         dialog.setContentView(R.layout.hoa_don_dialog);
         edMaHoaDon = dialog.findViewById(R.id.edMaHoaDon);
-        spTenNhanVien = dialog.findViewById(R.id.spTenNhanVien);
+        tvBienSoHDDL = dialog.findViewById(R.id.tvBienSoHDDL);
+        tvTenNhanVien= dialog.findViewById(R.id.tvTenNV);
+        tvTenNhanVien.setText(""+tennv);
         spTenKH = dialog.findViewById(R.id.spTenKH);
         spTenXe = dialog.findViewById(R.id.spTenXe);
         tvNgayMua = dialog.findViewById(R.id.tvNgay);
@@ -172,23 +193,23 @@ public class HoaDonfragment extends Fragment {
         btnadd = dialog.findViewById(R.id.btnSave);
         tvNgayMua.setText("Ngày Mua: " + sdf.format(new Date()));
 
-        nhanVienDAO = new NhanVienDAO(context);
-        listNhanVien = new ArrayList<NhanVien>();
-        listNhanVien = (ArrayList<NhanVien>)nhanVienDAO.getAll();
-        nhanVienSpinnerAdapter = new NhanVienSpinnerAdapter(context,listNhanVien);
-        spTenNhanVien.setAdapter(nhanVienSpinnerAdapter);
-        spTenNhanVien.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                maNhanVien = String.valueOf(listNhanVien.get(position).maNv);
-                Toast.makeText(context,"Nhân Viên: " + listNhanVien.get(position).tenNhanVien,Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        nhanVienDAO = new NhanVienDAO(context);
+//        listNhanVien = new ArrayList<NhanVien>();
+//        listNhanVien = (ArrayList<NhanVien>)nhanVienDAO.getAll();
+//        nhanVienSpinnerAdapter = new NhanVienSpinnerAdapter(context,listNhanVien);
+//        spTenNhanVien.setAdapter(nhanVienSpinnerAdapter);
+//        spTenNhanVien.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                maNhanVien = String.valueOf(listNhanVien.get(position).maNv);
+//                Toast.makeText(context,"Nhân Viên: " + listNhanVien.get(position).tenNhanVien,Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
         khachHangDAO = new KhachHangDAO(context);
         lisKhachHang = new ArrayList<KhachHang>();
@@ -217,6 +238,8 @@ public class HoaDonfragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 maXe = listXe.get(i).maXe;
                 Gia= listXe.get(i).gia;
+                bienSo = listXe.get(i).bienSo;
+                tvBienSoHDDL.setText("Biển số: " + bienSo);
                 tvGia.setText("Giá tiền: "+Gia);
                 Toast.makeText(context, "Xe: "+listXe.get(i).tenXe, Toast.LENGTH_SHORT).show();
             }
@@ -243,30 +266,31 @@ public class HoaDonfragment extends Fragment {
                     positionXe = i;
                 }
             spTenXe.setSelection(positionXe);
-            tvNgayMua.setText("Ngày Mua: "+sdf.format(item.ngay));
+            tvNgayMua.setText("Ngày Thuê: "+sdf.format(item.ngay));
             tvGia.setText("Giá Tiền: "+item.giaTien);
+            tvBienSoHDDL.setText("Biển số: " + item.bienSoHD);
         }
         btnadd.setOnClickListener(view -> {
+//            nhanVienDAO= new NhanVienDAO(getActivity());
+//            NhanVien nv =  nhanVienDAO.getTenNv((String) tvTenNhanVien.getText());
 
-            if (type == 0) {
-                Xe xe = xeDAO.getID(String.valueOf(maXe));
-                if (xe.soLuong == 0) {
-                    Toast.makeText(context, "Xe đã hết hàng vui lòng chọn xe khác", Toast.LENGTH_SHORT).show();
-                } else {
-                    xe.soLuong = xe.soLuong - 1;
-                    item = new HoaDon();
-                    item.maXe = maXe;
-                    item.maNv = maNhanVien;
-                    item.maKhachHang = maKH;
-                    item.ngay = new Date();
-                    item.giaTien = Gia;
-                    if (dao.insert(item) > 0 && xeDAO.update(xe) > 0) {
+            item = new HoaDon();
+            item.maXe = maXe;
+            item.maNv = tvTenNhanVien.getText().toString();
+            item.maKhachHang = maKH;
+            item.ngay = new Date();
+            item.giaTien = Gia;
+            item.bienSoHD = bienSo;
+            HoaDonDAO hddao = new HoaDonDAO(getActivity());
+
+            if(hddao.checkXeHD(String.valueOf(maXe)).size()==0){
+                if (type == 0) {
+                    if (dao.insert(item) > 0) {
                         Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(context, "Thêm thất bại", Toast.LENGTH_SHORT).show();
                     }
-                }
-            }else {
+                }else {
                     item.maHoaDon = Integer.parseInt(edMaHoaDon.getText().toString());
                     if (dao.update(item)>0){
                         Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
@@ -276,10 +300,12 @@ public class HoaDonfragment extends Fragment {
                 }
                 capNhatLv();
                 dialog.dismiss();
-
+            }else{
+                Toast.makeText(context, "Xe hết", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
 
         });
-
         dialog.show();
     }
 }

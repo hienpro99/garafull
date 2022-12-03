@@ -65,7 +65,7 @@ public class Xefragment extends Fragment {
 
     FloatingActionButton fab;
     Dialog dialog;
-    EditText edMaXe, edTenXe, edSoLuong,edGiaMua,edSoKhungSoMay;
+    EditText edMaXe, edTenXe, edBienSoX,edGiaMua;
     Spinner spinner;
     ImageView imageView;
     Button btnSave, btnCancel,btnChoose;
@@ -162,8 +162,8 @@ public class Xefragment extends Fragment {
         spinner = dialog.findViewById(R.id.spLoaiXe);
 
         imageView = dialog.findViewById(R.id.imgXe);
-        edSoKhungSoMay = dialog.findViewById(R.id.edSoKhungSoMay);
-        edSoLuong = dialog.findViewById(R.id.edSoLuong);
+
+        edBienSoX = dialog.findViewById(R.id.edBienSoX);
         edGiaMua = dialog.findViewById(R.id.edGiaMua);
         btnChoose = dialog.findViewById(R.id.btnChoose);
         btnCancel = dialog.findViewById(R.id.btnCancel);
@@ -191,8 +191,7 @@ public class Xefragment extends Fragment {
         if (type != 0) {
             edMaXe.setText(String.valueOf(item.maXe));
             edTenXe.setText(item.tenXe);
-            edSoKhungSoMay.setText(item.soKhungSoMay);
-            edSoLuong.setText(String.valueOf(item.soLuong));
+            edBienSoX.setText((item.bienSo));
             edGiaMua.setText(String.valueOf(item.gia));
             for (int i = 0; i < listLoaiXe.size(); i++)
                 if (item.maLoaiXe == (listLoaiXe.get(i).maLoaiXe)) {
@@ -237,8 +236,7 @@ public class Xefragment extends Fragment {
                 if (validate() > 0) {
                     item = new Xe();
                     item.tenXe = edTenXe.getText().toString();
-                    item.soKhungSoMay = edSoKhungSoMay.getText().toString();
-                    item.soLuong = Integer.parseInt(edSoLuong.getText().toString());
+                    item.bienSo = (edBienSoX.getText().toString());
                     item.gia = Integer.parseInt(edGiaMua.getText().toString());
                     item.maLoaiXe = maLoaiXe;
                     imageViewtoByte(imageView);
@@ -278,7 +276,7 @@ public class Xefragment extends Fragment {
 
     public int validate() {
         int check = 1;
-        if (edTenXe.getText().toString().length() == 0 || edGiaMua.getText().toString().equals("")|| edSoLuong.getText().toString().equals("") || edSoKhungSoMay.getText().toString().equals("")){
+        if (edTenXe.getText().toString().length() == 0 || edGiaMua.getText().toString().equals("")|| edBienSoX.getText().toString().equals("")){
             Toast.makeText(getContext(), "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
             check = -1;
         }

@@ -25,16 +25,16 @@
             android:id="@+id/tvMaXe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="10dp"
+            android:textSize="19dp"
             android:text="Mã xe"
             android:layout_gravity="center_horizontal"/>
-<!--        <TextView-->
-<!--            android:id="@+id/tvHangXe"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="18dp"-->
-<!--            android:layout_gravity="center_horizontal"-->
-<!--            android:text="Hãng Xe"/>-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvHangXe"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:textSize="18dp"-->
+        <!--            android:layout_gravity="center_horizontal"-->
+        <!--            android:text="Hãng Xe"/>-->
 
         <TextView
             android:id="@+id/tvLoaiXe"
@@ -54,21 +54,12 @@
             android:text="Tên Xe"
             android:layout_gravity="center_horizontal"/>
         <TextView
-            android:id="@+id/tvSoKhungSoMay"
+            android:id="@+id/tvBienSo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:textColor="@color/purple_500"
-            android:text="Số khung số máy"
-            android:layout_gravity="center_horizontal"/>
-        <TextView
-            android:id="@+id/tvSoluong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="Số Lượng"
+            android:text="Biển số"
             android:layout_gravity="center_horizontal"/>
 
 
@@ -84,15 +75,15 @@
 
     </LinearLayout>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/imgEdit"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="50dp"-->
-<!--        android:layout_weight="1.5"-->
-<!--        android:layout_marginLeft="15dp"-->
-<!--        android:src="@drawable/ic_baseline_edit_24"-->
-<!--        android:layout_gravity="center_vertical"-->
-<!--        />-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imgEdit"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="50dp"-->
+    <!--        android:layout_weight="1.5"-->
+    <!--        android:layout_marginLeft="15dp"-->
+    <!--        android:src="@drawable/ic_baseline_edit_24"-->
+    <!--        android:layout_gravity="center_vertical"-->
+    <!--        />-->
     <ImageView
         android:id="@+id/imgDelete"
         android:layout_width="0dp"

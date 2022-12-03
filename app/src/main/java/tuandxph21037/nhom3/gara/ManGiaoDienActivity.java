@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-import tuandxph21037.nhom3.gara.fragment.DoanhThuFragment;
+import tuandxph21037.nhom3.gara.fragment.DoanhSoNhanVien;
 import tuandxph21037.nhom3.gara.fragment.DoiMatKhau;
 import tuandxph21037.nhom3.gara.fragment.HoaDonfragment;
 import tuandxph21037.nhom3.gara.fragment.Home;
@@ -34,6 +34,7 @@ public class ManGiaoDienActivity extends AppCompatActivity implements Navigation
     private Toolbar toolbar;
     FrameLayout frameLayout;
     private NavigationView navigationView;
+    public String tennv = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,7 @@ public class ManGiaoDienActivity extends AppCompatActivity implements Navigation
         navigationView.setNavigationItemSelectedListener(this);
         Intent intent = getIntent();
         String user = intent.getStringExtra("user");
+        tennv=user;
         if(user.equalsIgnoreCase("admin")) {
             navigationView.getMenu().findItem(R.id.nav_qlnhanvien).setVisible(true);
             navigationView.getMenu().findItem(R.id.nav_topnhanvien).setVisible(true);
@@ -113,7 +115,7 @@ public class ManGiaoDienActivity extends AppCompatActivity implements Navigation
 
         }else if (id == R.id.nav_doanhsonhanvien){
             // màn hình doanh số  nhân viên
-            replaceFragment(DoanhThuFragment.newInstance());
+            replaceFragment(DoanhSoNhanVien.newInstance());
 
         }else if (id == R.id.nav_doimatkhau){
             // màn hình đổi mâtj khẩu
@@ -151,5 +153,8 @@ public class ManGiaoDienActivity extends AppCompatActivity implements Navigation
         transaction.replace(R.id.frame_layout,fragment);
         transaction.addToBackStack(Home.newInstance().getClass().getSimpleName());
         transaction.commit();
+    }
+    public String getTennv() {
+        return tennv;
     }
 }

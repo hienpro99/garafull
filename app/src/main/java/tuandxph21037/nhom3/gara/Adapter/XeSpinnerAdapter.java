@@ -18,7 +18,7 @@ import tuandxph21037.nhom3.gara.R;
 public class XeSpinnerAdapter extends ArrayAdapter<Xe> {
     private Context context;
     private ArrayList<Xe> list;
-    TextView tvMaXe,tvTenXe,tvSoKhungSoMay;
+    TextView tvMaXe,tvTenXe;
     public XeSpinnerAdapter(@NonNull Context context, ArrayList<Xe> list) {
         super(context, 0,list);
         this.context = context;
@@ -39,8 +39,6 @@ public class XeSpinnerAdapter extends ArrayAdapter<Xe> {
             tvMaXe.setText(item.maXe +". ");
             tvTenXe = v.findViewById(R.id.tvTenXeSp);
             tvTenXe.setText(item.tenXe);
-            tvSoKhungSoMay = v.findViewById(R.id.tvSoKhungSoMaySp);
-            tvSoKhungSoMay.setText(item.soKhungSoMay);
         }
         return v;
     }
@@ -58,8 +56,6 @@ public class XeSpinnerAdapter extends ArrayAdapter<Xe> {
             tvMaXe.setText(item.maXe +". ");
             tvTenXe = v.findViewById(R.id.tvTenXeSp);
             tvTenXe.setText(item.tenXe);
-            tvSoKhungSoMay = v.findViewById(R.id.tvSoKhungSoMaySp);
-            tvSoKhungSoMay.setText(item.soKhungSoMay);
         }
         return v;
     }

@@ -1,49 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1. "
-            android:textSize="14dp"
-            android:id="@+id/tvMaXeSp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14dp"
-            android:text="Tên Xe: "/>
+        android:text="1. "
+        android:textSize="14dp"
+        android:id="@+id/tvMaXeSp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvTenXeSp"
-            android:background="@drawable/blue_background"
-            android:textSize="14dp"
-            android:text="CRV "/>
-    </LinearLayout>
-   <LinearLayout
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal">
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:textSize="14dp"
-           android:text="SKSM:: "/>
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/tvSoKhungSoMaySp"
-           android:background="@drawable/brown_background"
-           android:textSize="14dp"
-           android:text="RLMGG3HX7EV005818-27492030128211"/>
-   </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTenXeSp"
+        android:background="@drawable/blue_background"
+        android:textSize="14dp"
+        android:text="CRV"/>
 
 </LinearLayout>

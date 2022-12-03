@@ -9,17 +9,19 @@ public class HoaDon {
     public int maXe;
     public Date ngay;
     public int giaTien;
+    public String bienSoHD;
 
     public HoaDon() {
     }
 
-    public HoaDon(int maHoaDon, String maNv, int maKhachHang, int maXe, Date ngay, int giaTien) {
+    public HoaDon(int maHoaDon, String maNv, int maKhachHang, int maXe, Date ngay, int giaTien, String bienSoHD) {
         this.maHoaDon = maHoaDon;
         this.maNv = maNv;
         this.maKhachHang = maKhachHang;
         this.maXe = maXe;
         this.ngay = ngay;
         this.giaTien = giaTien;
+        this.bienSoHD = bienSoHD;
     }
 
 }

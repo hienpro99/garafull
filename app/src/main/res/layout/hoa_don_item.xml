@@ -24,11 +24,11 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvTenNhanVienHD"
+            android:id="@+id/tvTenNv"
             android:textSize="20dp"
-            android:textColor="#2D5059"
+            android:textColor="#37F403"
             android:textStyle="bold"
-            android:text="TenNV"/>
+            android:text="TenNv"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,14 +50,22 @@
                 android:textColor="#9C27B0"
                 android:textStyle="bold"
                 android:text="TenXe"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvGio"
-                android:textColor="#F60026"
+                android:id="@+id/tvBienSoHD"
                 android:layout_weight="1"
-                android:layout_marginBottom="15dp"
-                android:text="Giờ"/>
+                android:textSize="20dp"
+                android:textColor="#27B055"
+                android:textStyle="bold"
+                android:text="Biển số:"/>
 
         </LinearLayout>
         <LinearLayout

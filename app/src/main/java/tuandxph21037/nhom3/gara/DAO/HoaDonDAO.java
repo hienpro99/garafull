@@ -22,7 +22,7 @@ public class HoaDonDAO {
 
     private SQLiteDatabase db;
     private Context context;
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
     public HoaDonDAO(Context context){
         this.context = context;
@@ -37,6 +37,7 @@ public class HoaDonDAO {
         values.put("maXe",obj.maXe);
         values.put("ngay",sdf.format(obj.ngay));
         values.put("giaTien",obj.giaTien);
+        values.put("bienSoHD",obj.bienSoHD);
         return db.insert("HoaDon",null, values);
 
     }
@@ -48,13 +49,18 @@ public class HoaDonDAO {
         values.put("maXe",obj.maXe);
         values.put("ngay",sdf.format(obj.ngay));
         values.put("giaTien",obj.giaTien);
+        values.put("bienSoHD",obj.bienSoHD);
         return db.update("HoaDon",values,"maHoaDon=?",new String[]{String.valueOf(obj.maHoaDon)});
     }
     public int delete(String id){
         return db.delete("HoaDon","maHoaDon=?",new String[]{id});
     }
     //get tat ca data
-    public List<HoaDon> getAll(){
+    public List<HoaDon> getAllnv(String maNv){
+        String sql = "SELECT * FROM HoaDon WHERE maNv=?";
+        return getData(sql,maNv);
+    }
+    public List<HoaDon> getAllad(){
         String sql = "SELECT * FROM HoaDon";
         return getData(sql);
     }
@@ -76,6 +82,7 @@ public class HoaDonDAO {
             obj.maKhachHang = Integer.parseInt(c.getString(c.getColumnIndex("maKhachHang")));
             obj.maXe = Integer.parseInt(c.getString(c.getColumnIndex("maXe")));
             obj.giaTien = Integer.parseInt(c.getString(c.getColumnIndex("giaTien")));
+            obj.bienSoHD = c.getString(c.getColumnIndex("bienSoHD"));
             try {
                 obj.ngay = sdf.parse(c.getString(c.getColumnIndex("ngay")));
             }catch (ParseException e){
@@ -136,9 +143,10 @@ public class HoaDonDAO {
         }
         return list.get(0);
     }
-    public HoaDon checkXeHD(String maxe){
+    public List<HoaDon> checkXeHD(String maxe){
         String sql = "SELECT * FROM HoaDon WHERE maXe=?";
         List<HoaDon> list = getData(sql, maxe);
-        return list.get(0);
+        return list;
     }
+
 }

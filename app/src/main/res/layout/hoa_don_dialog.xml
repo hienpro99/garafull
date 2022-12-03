@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:background="@color/colorTrendingEnd"
+    android:layout_width="400dp"
+    android:layout_height="600dp">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,41 +13,56 @@
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"/>
-    //
-    <Spinner
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spTenNhanVien"
-        android:layout_marginBottom="20dp"
+        android:text="Nhân Viên:"
         android:layout_marginLeft="25dp"
-        android:layout_marginRight="5dp"/>
-    //
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTenNV"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/teal_200"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Khách hàng:"
+        android:layout_marginLeft="25dp"
+        />
     <Spinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:id="@+id/spTenKH"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="5dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xe:"
+        android:layout_marginLeft="25dp"
+        />
     <Spinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:id="@+id/spTenXe"
         android:layout_marginBottom="20dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="5dp"/>
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:layout_marginLeft="20dp"-->
-<!--        android:layout_marginRight="20dp">-->
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/edGia"-->
-<!--            android:hint="Giá"/>-->
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+    <TextView
+        android:id="@+id/tvBienSoHDDL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Biển số: "
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="5dp"/>
     <TextView
         android:id="@+id/tvGiaMua"
         android:layout_width="match_parent"
@@ -56,18 +72,18 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="5dp"/>
 
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:layout_marginLeft="20dp"-->
-<!--        android:layout_marginRight="20dp">-->
-<!--        <com.google.android.material.textfield.TextInputEditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/edNgay"-->
-<!--            android:hint="Ngày mua"/>-->
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
+    <!--    <com.google.android.material.textfield.TextInputLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="20dp"-->
+    <!--        android:layout_marginLeft="20dp"-->
+    <!--        android:layout_marginRight="20dp">-->
+    <!--        <com.google.android.material.textfield.TextInputEditText-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:id="@+id/edNgay"-->
+    <!--            android:hint="Ngày mua"/>-->
+    <!--    </com.google.android.material.textfield.TextInputLayout>-->
     <TextView
         android:id="@+id/tvNgay"
         android:layout_width="match_parent"
