@@ -117,7 +117,7 @@ public class Home extends Fragment {
         });
         lnDoanhThu = view.findViewById(R.id.lnDoanhThu);
         lnDoanhThu.setOnClickListener(view1 -> {
-            replaceFragment(DoanhSoNhanVien.newInstance());
+            replaceFragment(DoanhThuFragment.newInstance());
         });
 
 

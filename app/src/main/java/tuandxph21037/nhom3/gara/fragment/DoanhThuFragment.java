@@ -1,5 +1,6 @@
 package tuandxph21037.nhom3.gara.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,59 +12,39 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import tuandxph21037.nhom3.gara.DAO.HoaDonDAO;
+import tuandxph21037.nhom3.gara.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import tuandxph21037.nhom3.gara.DAO.HoaDonDAO;
-import tuandxph21037.nhom3.gara.R;
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DoanhSoNhanVien#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class DoanhSoNhanVien extends Fragment {
+public class DoanhThuFragment extends Fragment {
     Button btnTuNgay, btnDenNgay, btnDoanhThu;
     EditText edTuNgay, edDenNgay;
     TextView tvDoanhThu;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
     int mYear, mMonth, mDay;
-    public DoanhSoNhanVien() {
-        // Required empty public constructor
+
+    public static Fragment newInstance() {
+        DoanhThuFragment doanhThuFragment = new DoanhThuFragment();
+        return doanhThuFragment;
     }
 
-
-    public static DoanhSoNhanVien newInstance() {
-        DoanhSoNhanVien fragment = new DoanhSoNhanVien();
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_doanhsonhanvien, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        edTuNgay = view.findViewById(R.id.edTuNgay);
-        edDenNgay = view.findViewById(R.id.edDenNgay);
-        btnTuNgay = view.findViewById(R.id.btnTuNgay);
-        btnDenNgay = view.findViewById(R.id.btnDenNgay);
-        tvDoanhThu = view.findViewById(R.id.tvDoanhThu);
-        btnDoanhThu = view.findViewById(R.id.btnDoanhThu);
+        View v = inflater.inflate(R.layout.fragment_doanhsonhanvien, container, false);
+        edTuNgay = v.findViewById(R.id.edTuNgay);
+        edDenNgay = v.findViewById(R.id.edDenNgay);
+        btnTuNgay = v.findViewById(R.id.btnTuNgay);
+        btnDenNgay = v.findViewById(R.id.btnDenNgay);
+        tvDoanhThu = v.findViewById(R.id.tvDoanhThu);
+        btnDoanhThu = v.findViewById(R.id.btnDoanhThu);
         btnTuNgay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,13 +72,15 @@ public class DoanhSoNhanVien extends Fragment {
         btnDoanhThu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Hello",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Done",Toast.LENGTH_SHORT).show();
                 String tuNgay = edTuNgay.getText().toString();
                 String denNgay = edDenNgay.getText().toString();
                 HoaDonDAO hoaDonDAO = new HoaDonDAO(getActivity());
                 tvDoanhThu.setText("Doanh thu: "+hoaDonDAO.getDoanhThu(tuNgay, denNgay)+" VNĐ");
             }
         });
+
+        return v;
     }
     DatePickerDialog.OnDateSetListener mDateTuNgay = new DatePickerDialog.OnDateSetListener() {
         @Override

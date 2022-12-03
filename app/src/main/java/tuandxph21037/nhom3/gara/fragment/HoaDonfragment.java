@@ -52,7 +52,7 @@ public class HoaDonfragment extends Fragment {
     Spinner spTenNhanVien,spTenKH,spTenXe;
     TextView tvGia;
     Button btnadd,btnclose;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     HoaDon item;
     ArrayList<HoaDon> list;
     static HoaDonDAO dao;
@@ -243,7 +243,7 @@ public class HoaDonfragment extends Fragment {
                     positionXe = i;
                 }
             spTenXe.setSelection(positionXe);
-            tvNgayMua.setText("Ngày Thuê: "+sdf.format(item.ngay));
+            tvNgayMua.setText("Ngày Mua: "+sdf.format(item.ngay));
             tvGia.setText("Giá Tiền: "+item.giaTien);
         }
         btnadd.setOnClickListener(view -> {

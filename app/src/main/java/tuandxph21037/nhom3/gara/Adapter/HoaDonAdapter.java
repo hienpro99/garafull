@@ -42,7 +42,7 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
     XeDAO xeDAO;
     NhanVienDAO nhanVienDAO;
     KhachHangDAO khachHangDAO;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     Calendar now = Calendar.getInstance();
     String strDateFormat24 = "HH:mm:ss a";
     SimpleDateFormat sdg = new SimpleDateFormat(strDateFormat24);
@@ -99,6 +99,7 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
             }else {
                 tvMaHoaDon.setTextColor(Color.BLUE);
                 tvGiaMua.setTextColor(Color.BLUE);
+                tvGio.setTextColor(Color.YELLOW);
                 v.findViewById(R.id.lineitem).setBackgroundColor(Color.RED);
             }
             imgDelete = v.findViewById(R.id.imgDelete);

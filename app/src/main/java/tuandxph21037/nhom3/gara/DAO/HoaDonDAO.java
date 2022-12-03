@@ -22,7 +22,7 @@ public class HoaDonDAO {
 
     private SQLiteDatabase db;
     private Context context;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public HoaDonDAO(Context context){
         this.context = context;

@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-import tuandxph21037.nhom3.gara.fragment.DoanhSoNhanVien;
+import tuandxph21037.nhom3.gara.fragment.DoanhThuFragment;
 import tuandxph21037.nhom3.gara.fragment.DoiMatKhau;
 import tuandxph21037.nhom3.gara.fragment.HoaDonfragment;
 import tuandxph21037.nhom3.gara.fragment.Home;
@@ -113,7 +113,7 @@ public class ManGiaoDienActivity extends AppCompatActivity implements Navigation
 
         }else if (id == R.id.nav_doanhsonhanvien){
             // màn hình doanh số  nhân viên
-            replaceFragment(DoanhSoNhanVien.newInstance());
+            replaceFragment(DoanhThuFragment.newInstance());
 
         }else if (id == R.id.nav_doimatkhau){
             // màn hình đổi mâtj khẩu
