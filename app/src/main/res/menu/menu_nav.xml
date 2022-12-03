@@ -23,6 +23,7 @@
         <item
             android:title="Sản phẩm" >
             <menu>
+                <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_themloaixe"
                     android:title="Thêm loại xe"
@@ -31,10 +32,12 @@
                 <item android:id="@+id/nav_themxe"
                     android:icon="@drawable/ic_baseline_local_car_wash_24"
                     android:title="Thêm xe"/>
+                </group>
             </menu>
         </item>
         <item android:title="Thống kê">
             <menu>
+                <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_topnhanvien"
                     android:title="Top nhân viên ưu tú"
@@ -52,10 +55,12 @@
                     android:icon="@drawable/top_doanh_thu"
                     android:visible="false"
                     />
+                </group>
             </menu>
         </item>
         <item android:title="Tài khoản">
             <menu>
+                <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_doimatkhau"
                     android:title="Đổi mật khẩu"
@@ -71,6 +76,7 @@
                     android:icon="@drawable/exit"
                     android:title="Thoát"
                     />
+                </group>
             </menu>
         </item>
 

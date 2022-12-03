@@ -40,6 +40,7 @@ public class XeHelper extends SQLiteOpenHelper {
                 "tenXe text NOT NULL," +
                 "maLoaiXe INTEGER REFERENCES LoaiXe(maLoaiXe)," +
                 "img BLOB NOT NULL," +
+                "soKhungSoMay text NOT NULL," +
                 "soLuong INTEGER NOT NULL, " +
                 "gia INTEGER NOT NULL )";
         db.execSQL(createTableXe);

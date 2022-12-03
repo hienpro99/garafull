@@ -26,6 +26,7 @@ public class XeDAO {
         values.put("tenXe",obj.tenXe);
 
         values.put("img",obj.img);
+        values.put("soKhungSoMay",obj.soKhungSoMay);
         values.put("soLuong",obj.soLuong);
 
         values.put("gia",obj.gia);
@@ -37,6 +38,7 @@ public class XeDAO {
         values.put("maLoaiXe",obj.maLoaiXe);
         values.put("tenXe",obj.tenXe);
         values.put("img",obj.img);
+        values.put("soKhungSoMay",obj.soKhungSoMay);
         values.put("soLuong",obj.soLuong);
         values.put("gia",obj.gia);
         return db.update("Xe",values,"maXe=?",new String[]{String.valueOf(obj.maXe)});
@@ -66,6 +68,7 @@ public class XeDAO {
             obj.maLoaiXe = Integer.parseInt(c.getString(c.getColumnIndex("maLoaiXe")));
             obj.tenXe = c.getString(c.getColumnIndex("tenXe"));
             obj.img = c.getBlob(c.getColumnIndex("img"));
+            obj.soKhungSoMay = c.getString(c.getColumnIndex("soKhungSoMay"));
             obj.soLuong = Integer.parseInt(c.getString(c.getColumnIndex("soLuong")));
             obj.gia = Integer.parseInt(c.getString(c.getColumnIndex("gia")));
 

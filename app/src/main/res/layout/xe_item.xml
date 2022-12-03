@@ -25,7 +25,7 @@
             android:id="@+id/tvMaXe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="19dp"
+            android:textSize="10dp"
             android:text="Mã xe"
             android:layout_gravity="center_horizontal"/>
 <!--        <TextView-->
@@ -52,6 +52,15 @@
             android:textSize="20dp"
             android:textStyle="bold"
             android:text="Tên Xe"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/tvSoKhungSoMay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/purple_500"
+            android:text="Số khung số máy"
             android:layout_gravity="center_horizontal"/>
         <TextView
             android:id="@+id/tvSoluong"

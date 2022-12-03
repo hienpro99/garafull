@@ -59,6 +59,7 @@ public class Home extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         viewFlipper = view.findViewById(R.id.viewlipper);
         ActionViewFlipper();
         idDoiMK = view.findViewById(R.id.idDoiMK);
@@ -79,7 +80,15 @@ public class Home extends Fragment {
         });
         lnNhanVien = view.findViewById(R.id.lnNhanVien);
         lnNhanVien.setOnClickListener(view1 -> {
-            replaceFragment(NhanVienfragment.newInstance());
+            Intent intent1 = getActivity().getIntent();
+            String user = intent1.getStringExtra("user");
+            if (user.equals("admin")){
+                view.findViewById(R.id.lnNhanVien).setEnabled(true);
+                replaceFragment(NhanVienfragment.newInstance());
+            }else {
+                view.findViewById(R.id.lnNhanVien).setEnabled(false);
+            Toast.makeText(getActivity(), "Bạn không có quyền để dùng chức năng này", Toast.LENGTH_SHORT).show();
+            }
         });
         lnKhachHang = view.findViewById(R.id.lnKhachHang);
         lnKhachHang.setOnClickListener(view1 -> {
@@ -135,6 +144,7 @@ public class Home extends Fragment {
     public void replaceFragment(Fragment fragment){
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout,fragment);
+        transaction.addToBackStack(Home.newInstance().getClass().getSimpleName());
         transaction.commit();
     }
 }

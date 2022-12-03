@@ -29,7 +29,7 @@ public class XeAdapter extends ArrayAdapter<Xe> {
     Context context;
     Xefragment fragment;
     List<Xe> list;
-    TextView tvmaXe,tvLoaiXe,tvTenXe,tvSoluong,tvGiaMua;
+    TextView tvmaXe,tvLoaiXe,tvTenXe,tvSoKhungSoMay,tvSoluong,tvGiaMua;
     ImageView imgEdit,imgDelete;
     ImageView imgXe;
     HoaDonDAO hdDao ;
@@ -64,6 +64,8 @@ public class XeAdapter extends ArrayAdapter<Xe> {
             tvLoaiXe.setText("Loại Xe: "+loaiXe.tenLoai);
             tvTenXe = v.findViewById(R.id.tvTenXe);
             tvTenXe.setText("Tên Xe: "+item.tenXe);
+            tvSoKhungSoMay = v.findViewById(R.id.tvSoKhungSoMay);
+            tvSoKhungSoMay.setText("Số khung-số máy: " + item.soKhungSoMay);
             tvSoluong = v.findViewById(R.id.tvSoluong);
             tvSoluong.setText("Số lượng: " +item.soLuong);
             tvGiaMua = v.findViewById(R.id.tvGiaMua);
