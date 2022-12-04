@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -240,7 +241,8 @@ public class HoaDonfragment extends Fragment {
                 Gia= listXe.get(i).gia;
                 bienSo = listXe.get(i).bienSo;
                 tvBienSoHDDL.setText("Biển số: " + bienSo);
-                tvGia.setText("Giá tiền: "+Gia);
+                tvGia.setText("Giá tiền: "+Gia +"vnđ");
+                tvGia.setTextColor(Color.RED);
                 Toast.makeText(context, "Xe: "+listXe.get(i).tenXe, Toast.LENGTH_SHORT).show();
             }
 

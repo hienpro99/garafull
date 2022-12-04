@@ -104,8 +104,8 @@ public class HoaDonDAO {
             TopNhanVien topNhanVien = new TopNhanVien();
             NhanVien nhanVien = nhanVienDAO.getID(c.getString(c.getColumnIndex("maNv")));
             topNhanVien.tenNhanVien = nhanVien.tenNhanVien;
-            topNhanVien.soLuong = Integer.parseInt(c.getString(c.getColumnIndex(("soLuong"))));
-            topNhanVien.doanhSo = Integer.parseInt(c.getString(c.getColumnIndex(("tongTien"))));
+            topNhanVien.soLuong = Integer.parseInt(c.getString(c.getColumnIndex("soLuong")));
+            topNhanVien.doanhSo = Integer.parseInt(c.getString(c.getColumnIndex("tongTien")));
             list.add(topNhanVien);
         }
         return list;

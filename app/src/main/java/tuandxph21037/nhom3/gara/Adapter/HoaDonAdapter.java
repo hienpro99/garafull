@@ -85,7 +85,7 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
             tvBienSoHD.setText("Biển số: " + item.bienSoHD);
 
             tvGiaMua = v.findViewById(R.id.tvGiaMua);
-            tvGiaMua.setText("Giá Mua: "+item.giaTien);
+            tvGiaMua.setText("Giá Mua: "+item.giaTien+ " vnđ");
 
             tvNgaymua = v.findViewById(R.id.tvngaymua);
             tvNgaymua.setText("Ngày Mua: "+sdf.format(item.ngay));

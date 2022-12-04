@@ -67,7 +67,7 @@ public class XeAdapter extends ArrayAdapter<Xe> {
             tvBienSo = v.findViewById(R.id.tvBienSo);
             tvBienSo.setText("Biển số: " +item.bienSo);
             tvGiaMua = v.findViewById(R.id.tvGiaMua);
-            tvGiaMua.setText("Giá : "+item.gia);
+            tvGiaMua.setText("Giá : "+item.gia +" vnđ");
             imgDelete = v.findViewById(R.id.imgDelete);
         }
         imgDelete.setOnClickListener(view -> {

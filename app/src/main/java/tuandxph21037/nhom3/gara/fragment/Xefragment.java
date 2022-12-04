@@ -76,7 +76,7 @@ public class Xefragment extends Fragment {
     LoaiXe loaiXe;
     int maLoaiXe, position;
 
-
+    String regex = "([0-9]{2}[A-Z]-)([0-9]{4,5})";
     ////
     private static final  int IMAGE_PICK_CODE = 1000;
 
@@ -276,8 +276,12 @@ public class Xefragment extends Fragment {
 
     public int validate() {
         int check = 1;
+        String regexBS = edBienSoX.getText().toString();
         if (edTenXe.getText().toString().length() == 0 || edGiaMua.getText().toString().equals("")|| edBienSoX.getText().toString().equals("")){
             Toast.makeText(getContext(), "Bạn phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+            check = -1;
+        }else if (regexBS.length() > 9||regexBS.matches(regex)== false){
+            Toast.makeText(getActivity(), "Sai định dạng biển số xe", Toast.LENGTH_SHORT).show();
             check = -1;
         }
         return check;
