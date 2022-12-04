@@ -303,7 +303,7 @@ public class HoaDonfragment extends Fragment {
                 capNhatLv();
                 dialog.dismiss();
             }else{
-                Toast.makeText(context, "Xe hết", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Xe Đã có người mua", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
 
