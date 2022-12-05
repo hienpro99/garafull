@@ -134,8 +134,10 @@ public class HoaDonfragment extends Fragment {
         lvHoaDon.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                item = list.get(i);
-                openDialog(getActivity(),1);
+                if(!tennv.equals("admin")){
+                    item = list.get(i);
+                    openDialog(getActivity(),1);
+                }
                 return false;
             }
         });
