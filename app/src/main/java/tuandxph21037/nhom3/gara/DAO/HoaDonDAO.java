@@ -96,7 +96,7 @@ public class HoaDonDAO {
     //Thống kê top nhân viên
     @SuppressLint("Range")
     public List<TopNhanVien> getTopNhanVien() {
-        String sqlNhanVien = "SELECT maNv, count(maNv) as soLuong,sum(giaTien) as tongTien FROM HoaDon GROUP BY maNv ORDER BY tongTien DESC LIMIT 10";
+        String sqlNhanVien = "SELECT maNv, count(maNv) as soLuong,sum(giaTien) as doanhSo FROM HoaDon GROUP BY maNv ORDER BY doanhSo DESC LIMIT 10";
         List<TopNhanVien> list = new ArrayList<TopNhanVien>();
         NhanVienDAO nhanVienDAO = new NhanVienDAO(context);
         Cursor c = db.rawQuery(sqlNhanVien, null);
@@ -105,7 +105,7 @@ public class HoaDonDAO {
             NhanVien nhanVien = nhanVienDAO.getID(c.getString(c.getColumnIndex("maNv")));
             topNhanVien.tenNhanVien = nhanVien.tenNhanVien;
             topNhanVien.soLuong = Integer.parseInt(c.getString(c.getColumnIndex("soLuong")));
-            topNhanVien.doanhSo = Integer.parseInt(c.getString(c.getColumnIndex("tongTien")));
+            topNhanVien.doanhSo = Integer.parseInt(c.getString(c.getColumnIndex("doanhSo")));
             list.add(topNhanVien);
         }
         return list;

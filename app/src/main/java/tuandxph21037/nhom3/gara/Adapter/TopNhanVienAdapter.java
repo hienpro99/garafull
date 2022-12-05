@@ -45,9 +45,9 @@ public class TopNhanVienAdapter extends ArrayAdapter<TopNhanVien> {
             tvNhanVienT = v.findViewById(R.id.tvNhanVienT);
             tvNhanVienT.setText("Nhân viên: " + item.tenNhanVien);
             tvSL = v.findViewById(R.id.tvSL);
-            tvSL.setText("Chốt sales \n" + item.soLuong);
+            tvSL.setText("Chốt sales:" + item.soLuong);
             tvDoanhSo = v.findViewById(R.id.tvTien);
-            tvDoanhSo.setText("Doanh số\n" + item.doanhSo + " $");
+            tvDoanhSo.setText("Doanh số: " + item.doanhSo + " vnđ");
         }
         return v;
     }

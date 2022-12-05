@@ -9,8 +9,9 @@ public class TopNhanVien {
     public TopNhanVien() {
     }
 
-    public TopNhanVien(String tenNhanVien, int soLuong) {
+    public TopNhanVien(String tenNhanVien, int soLuong, int doanhSo) {
         this.tenNhanVien = tenNhanVien;
         this.soLuong = soLuong;
+        this.doanhSo = doanhSo;
     }
 }
