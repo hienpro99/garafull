@@ -117,7 +117,15 @@ public class Home extends Fragment {
         });
         lnDoanhThu = view.findViewById(R.id.lnDoanhThu);
         lnDoanhThu.setOnClickListener(view1 -> {
-            replaceFragment(DoanhSoNhanVien.newInstance());
+            Intent intent1 = getActivity().getIntent();
+            String user = intent1.getStringExtra("user");
+//            replaceFragment(DoanhSoNhanVien.newInstance());
+            if(user.equals("admin")){
+                replaceFragment(DoanhSoNhanVien.newInstance());
+
+            }else {
+                replaceFragment(DoanhSoTungNv.newInstance());
+            };
         });
 
 

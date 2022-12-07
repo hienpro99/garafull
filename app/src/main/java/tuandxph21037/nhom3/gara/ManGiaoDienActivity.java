@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 
 import tuandxph21037.nhom3.gara.fragment.DoanhSoNhanVien;
+import tuandxph21037.nhom3.gara.fragment.DoanhSoTungNv;
 import tuandxph21037.nhom3.gara.fragment.DoiMatKhau;
 import tuandxph21037.nhom3.gara.fragment.HoaDonfragment;
 import tuandxph21037.nhom3.gara.fragment.Home;
@@ -114,8 +115,14 @@ public class ManGiaoDienActivity extends AppCompatActivity implements Navigation
             replaceFragment(TopXe.newInstance());
 
         }else if (id == R.id.nav_doanhsonhanvien){
+            Toast.makeText(this, tennv, Toast.LENGTH_SHORT).show();
+            if(tennv.equals("admin")){
+                replaceFragment(DoanhSoNhanVien.newInstance());
+
+            }else {
+                replaceFragment(DoanhSoTungNv.newInstance());
+            };
             // màn hình doanh số  nhân viên
-            replaceFragment(DoanhSoNhanVien.newInstance());
 
         }else if (id == R.id.nav_doimatkhau){
             // màn hình đổi mâtj khẩu
@@ -155,6 +162,9 @@ public class ManGiaoDienActivity extends AppCompatActivity implements Navigation
         transaction.commit();
     }
     public String getTennv() {
-        return tennv;
+        Intent intent = getIntent();
+        String user = intent.getStringExtra("user");
+        tennv=user;
+        return user;
     }
 }
