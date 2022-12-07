@@ -67,28 +67,29 @@ public class XeAdapter extends ArrayAdapter<Xe> {
             tvBienSo = v.findViewById(R.id.tvBienSo);
             tvBienSo.setText("Biển số: " +item.bienSo);
             tvGiaMua = v.findViewById(R.id.tvGiaMua);
-            tvGiaMua.setText("Giá : "+item.gia +" vnđ");
+            tvGiaMua.setText("Giá : "+item.gia+ " vnđ");
             imgDelete = v.findViewById(R.id.imgDelete);
         }
-        imgDelete.setOnClickListener(view -> {
-            hdDao= new HoaDonDAO(context);
-            if(hdDao.checkXeHD(String.valueOf(item.maXe))==null){
-                fragment.xoa(String.valueOf(item.maLoaiXe));
-            }else {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Warning!");
-                builder.setMessage("Có hóa đơn\n" + "Không thể xóa!");
-                builder.setIcon(R.drawable.ic_baseline_delete_24);
-                builder.setCancelable(true);
-                builder.setPositiveButton("Đã hiểu", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-                builder.show();
-            }
-        });
+        hdDao= new HoaDonDAO(context);
+        if(hdDao.checkXeHD(String.valueOf(item.maXe)).size()==0){
+            imgDelete.setOnClickListener(view -> {
+                fragment.xoa(String.valueOf(item.maXe));
+            });
+        }else imgDelete.setEnabled(false);
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//                builder.setTitle("Warning!");
+//                builder.setMessage("Có hóa đơn\n" + "Không thể xóa!");
+//                builder.setIcon(R.drawable.ic_baseline_delete_24);
+//                builder.setCancelable(true);
+//                builder.setPositiveButton("Đã hiểu", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialogInterface, int i) {
+//                        dialogInterface.cancel();
+//                    }
+//                });
+//                builder.show();
+//            }
+//        });
         return v;
     }
 }

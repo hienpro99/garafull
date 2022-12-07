@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ public class HoaDonfragment extends Fragment {
     Spinner spTenKH,spTenXe;
     TextView tvGia,tvBienSoHDDL;
     Button btnadd,btnclose;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     HoaDon item;
     ArrayList<HoaDon> list;
     static HoaDonDAO dao;
@@ -120,8 +121,30 @@ public class HoaDonfragment extends Fragment {
         dao = new HoaDonDAO(getActivity());
         xeDAO= new XeDAO(getActivity());
         khachHangDAO = new KhachHangDAO(getActivity());
-
+        TextInputEditText edSearch = view.findViewById(R.id.searchNv);
+        ImageView search = view.findViewById(R.id.search);
         capNhatLv();
+        if(!tennv.equals("admin")){
+            search.setEnabled(false);
+            edSearch.setEnabled(false);
+        }
+
+        NhanVienDAO nvDao = new NhanVienDAO(getActivity());
+        search.setOnClickListener(view1->{
+
+            if(edSearch.getText().toString().equals("")){
+                list = (ArrayList<HoaDon>) dao.getAllad();
+                adapter = new HoaDonAdapter(getActivity(),this,list);
+                lvHoaDon.setAdapter(adapter);
+            }else if(nvDao.getTenNv(edSearch.getText().toString()).size()==0){
+                Toast.makeText(getActivity(), "Không có nhân viên phù hợp", Toast.LENGTH_SHORT).show();
+            }else {
+                HdNV(edSearch.getText().toString());
+            }
+        });
+        if(tennv.equals("admin")){
+            fab.setVisibility(View.INVISIBLE);
+        }
         fab.setOnClickListener(view1 -> {
             if(xeDAO.getAll().size()==0){
                 Toast.makeText(getActivity(), "Bạn cần thêm Xe trước khi tạo hóa đơn", Toast.LENGTH_SHORT).show();
@@ -138,6 +161,7 @@ public class HoaDonfragment extends Fragment {
                     item = list.get(i);
                     openDialog(getActivity(),1);
                 }
+
                 return false;
             }
         });
@@ -154,6 +178,14 @@ public class HoaDonfragment extends Fragment {
             adapter = new HoaDonAdapter(getActivity(),this,list);
             lvHoaDon.setAdapter(adapter);
         }
+
+    }
+    void HdNV(String manv) {
+        mActivity2 = (ManGiaoDienActivity) getActivity();
+        String tennv = mActivity2.getTennv();
+        list = (ArrayList<HoaDon>) dao.getAllnv(manv);
+        adapter = new HoaDonAdapter(getActivity(),this,list);
+        lvHoaDon.setAdapter(adapter);
 
     }
     public void xoa(final String Id){
@@ -187,7 +219,12 @@ public class HoaDonfragment extends Fragment {
         edMaHoaDon = dialog.findViewById(R.id.edMaHoaDon);
         tvBienSoHDDL = dialog.findViewById(R.id.tvBienSoHDDL);
         tvTenNhanVien= dialog.findViewById(R.id.tvTenNV);
-        tvTenNhanVien.setText(""+tennv);
+        nhanVienDAO= new NhanVienDAO(getActivity());
+        NhanVien nv = new NhanVien();
+        if(!tennv.equals("admin")) {
+            nv =  nhanVienDAO.getID(""+tennv);
+        }
+        tvTenNhanVien.setText(nv.tenNhanVien);
         spTenKH = dialog.findViewById(R.id.spTenKH);
         spTenXe = dialog.findViewById(R.id.spTenXe);
         tvNgayMua = dialog.findViewById(R.id.tvNgay);
@@ -243,8 +280,7 @@ public class HoaDonfragment extends Fragment {
                 Gia= listXe.get(i).gia;
                 bienSo = listXe.get(i).bienSo;
                 tvBienSoHDDL.setText("Biển số: " + bienSo);
-                tvGia.setText("Giá tiền: "+Gia +"vnđ");
-                tvGia.setTextColor(Color.RED);
+                tvGia.setText("Giá tiền: "+Gia);
                 Toast.makeText(context, "Xe: "+listXe.get(i).tenXe, Toast.LENGTH_SHORT).show();
             }
 
@@ -258,6 +294,7 @@ public class HoaDonfragment extends Fragment {
         });
         edMaHoaDon.setEnabled(false);
         if (type !=0){
+
             edMaHoaDon.setText(String.valueOf(item.maHoaDon));
             for (int i = 0; i<lisKhachHang.size();i++)
                 if (item.maKhachHang == (lisKhachHang.get(i).maKhachHang)){
@@ -270,46 +307,60 @@ public class HoaDonfragment extends Fragment {
                     positionXe = i;
                 }
             spTenXe.setSelection(positionXe);
+            tvTenNhanVien.setText(nv.tenNhanVien);
             tvNgayMua.setText("Ngày Thuê: "+sdf.format(item.ngay));
             tvGia.setText("Giá Tiền: "+item.giaTien);
             tvBienSoHDDL.setText("Biển số: " + item.bienSoHD);
         }
+        NhanVien finalNv = nv;
         btnadd.setOnClickListener(view -> {
 //            nhanVienDAO= new NhanVienDAO(getActivity());
 //            NhanVien nv =  nhanVienDAO.getTenNv((String) tvTenNhanVien.getText());
 
             item = new HoaDon();
             item.maXe = maXe;
-            item.maNv = tvTenNhanVien.getText().toString();
+            item.maNv = finalNv.maNv;
             item.maKhachHang = maKH;
             item.ngay = new Date();
             item.giaTien = Gia;
             item.bienSoHD = bienSo;
             HoaDonDAO hddao = new HoaDonDAO(getActivity());
 
-            if(hddao.checkXeHD(String.valueOf(maXe)).size()==0){
-                if (type == 0) {
+
+            if (type == 0) {
+                if(hddao.checkXeHD(String.valueOf(maXe)).size()==0){
                     if (dao.insert(item) > 0) {
                         Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(context, "Thêm thất bại", Toast.LENGTH_SHORT).show();
                     }
-                }else {
-                    item.maHoaDon = Integer.parseInt(edMaHoaDon.getText().toString());
-                    if (dao.update(item)>0){
-                        Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(context, "Sửa thất bại", Toast.LENGTH_SHORT).show();
-                    }
+                }else{
+                    Toast.makeText(context, "Xe đã có người mua", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
                 }
-                capNhatLv();
-                dialog.dismiss();
-            }else{
-                Toast.makeText(context, "Xe Đã có người mua", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
+            }else{ if (hddao.checkXeHD(String.valueOf(maXe)).size()==0) {
+                item.maHoaDon = Integer.parseInt(edMaHoaDon.getText().toString());
+                if (dao.update(item) > 0) {
+                    Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Sửa thất bại", Toast.LENGTH_SHORT).show();
+                }
             }
+//                     }else Toast.makeText(context, "Xe đã có người mua", Toast.LENGTH_SHORT).show();
+
+            }
+
+
+            capNhatLv();
+            dialog.dismiss();
 
         });
         dialog.show();
+    }
+
+    public String getTennv() {
+        mActivity2 = (ManGiaoDienActivity) getActivity();
+        String tennv = mActivity2.getTennv();
+        return tennv;
     }
 }

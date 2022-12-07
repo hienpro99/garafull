@@ -22,7 +22,7 @@ public class HoaDonDAO {
 
     private SQLiteDatabase db;
     private Context context;
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
 
     public HoaDonDAO(Context context){
         this.context = context;
@@ -61,7 +61,7 @@ public class HoaDonDAO {
         return getData(sql,maNv);
     }
     public List<HoaDon> getAllad(){
-        String sql = "SELECT * FROM HoaDon";
+        String sql = "SELECT * FROM HoaDon GROUP BY maHoaDon ORDER BY maNv ASC";
         return getData(sql);
     }
     //get data theo id
@@ -96,7 +96,7 @@ public class HoaDonDAO {
     //Thống kê top nhân viên
     @SuppressLint("Range")
     public List<TopNhanVien> getTopNhanVien() {
-        String sqlNhanVien = "SELECT maNv, count(maNv) as soLuong,sum(giaTien) as doanhSo FROM HoaDon GROUP BY maNv ORDER BY doanhSo DESC LIMIT 10";
+        String sqlNhanVien = "SELECT maNv, count(maNv) as soLuong,SUM(giaTien) as doanhSo FROM HoaDon GROUP BY maNv ORDER BY doanhSo DESC LIMIT 10";
         List<TopNhanVien> list = new ArrayList<TopNhanVien>();
         NhanVienDAO nhanVienDAO = new NhanVienDAO(context);
         Cursor c = db.rawQuery(sqlNhanVien, null);
@@ -104,13 +104,13 @@ public class HoaDonDAO {
             TopNhanVien topNhanVien = new TopNhanVien();
             NhanVien nhanVien = nhanVienDAO.getID(c.getString(c.getColumnIndex("maNv")));
             topNhanVien.tenNhanVien = nhanVien.tenNhanVien;
-            topNhanVien.soLuong = Integer.parseInt(c.getString(c.getColumnIndex("soLuong")));
+            topNhanVien.soLuong = Integer.parseInt(c.getString(c.getColumnIndex(("soLuong"))));
             topNhanVien.doanhSo = Integer.parseInt(c.getString(c.getColumnIndex("doanhSo")));
             list.add(topNhanVien);
         }
         return list;
     }
-    //thong ke top 10
+    //thong ke top 10 xe
     @SuppressLint("Range")
     public List<Top> getTop() {
         String sqlTop = "SELECT maXe, count(maXe) as soLuong FROM HoaDon GROUP BY maXe ORDER BY soLuong DESC LIMIT 10";
@@ -143,9 +143,37 @@ public class HoaDonDAO {
         }
         return list.get(0);
     }
+
+    @SuppressLint("Range")
+    public List<HoaDon> getHoaDonDT(String tuNgay, String denNgay) {
+        String sqlhoadon = "SELECT * FROM HoaDon WHERE ngay BETWEEN ? AND ?";
+        List<HoaDon> list = new ArrayList<>();
+        Cursor c = db.rawQuery(sqlhoadon, new String[]{tuNgay, denNgay});
+        while (c.moveToNext()){
+            HoaDon obj = new HoaDon();
+            obj.maHoaDon = Integer.parseInt(c.getString(c.getColumnIndex("maHoaDon")));
+            obj.maNv = c.getString(c.getColumnIndex("maNv"));
+            obj.maKhachHang = Integer.parseInt(c.getString(c.getColumnIndex("maKhachHang")));
+            obj.maXe = Integer.parseInt(c.getString(c.getColumnIndex("maXe")));
+            obj.giaTien = Integer.parseInt(c.getString(c.getColumnIndex("giaTien")));
+            obj.bienSoHD = c.getString(c.getColumnIndex("bienSoHD"));
+            try {
+                obj.ngay = sdf.parse(c.getString(c.getColumnIndex("ngay")));
+            }catch (ParseException e){
+                e.printStackTrace();
+            }
+            list.add(obj);
+        }
+        return list;
+    }
     public List<HoaDon> checkXeHD(String maxe){
         String sql = "SELECT * FROM HoaDon WHERE maXe=?";
         List<HoaDon> list = getData(sql, maxe);
+        return list;
+    }
+    public List<HoaDon> getHDNV(String tuNgay, String denNgay, String maNv){
+        String sql = "SELECT * FROM HoaDon WHERE ngay BETWEEN ? AND ? AND maNv=?";
+        List<HoaDon> list = getData(sql,tuNgay,denNgay, maNv);
         return list;
     }
 

@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import tuandxph21037.nhom3.gara.DAO.KhachHangDAO;
 import tuandxph21037.nhom3.gara.DAO.NhanVienDAO;
 import tuandxph21037.nhom3.gara.DAO.XeDAO;
@@ -26,11 +27,11 @@ import tuandxph21037.nhom3.gara.Model.KhachHang;
 import tuandxph21037.nhom3.gara.Model.NhanVien;
 import tuandxph21037.nhom3.gara.Model.Xe;
 import tuandxph21037.nhom3.gara.R;
-import tuandxph21037.nhom3.gara.fragment.HoaDonfragment;
+import tuandxph21037.nhom3.gara.fragment.DoanhSoTungNv;
 
-public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
+public class HoaDonTungNvAdapter extends ArrayAdapter<HoaDon> implements Filterable {
     private Context context;
-    HoaDonfragment fragment;
+    DoanhSoTungNv fragment;
     private ArrayList<HoaDon> list;
     //
     private ArrayList<HoaDon> list1;
@@ -47,7 +48,7 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
     String strDateFormat24 = "HH:mm:ss a";
     SimpleDateFormat sdg = new SimpleDateFormat(strDateFormat24);
 
-    public HoaDonAdapter(@NonNull Context context, HoaDonfragment fragment, ArrayList<HoaDon> list) {
+    public HoaDonTungNvAdapter(@NonNull Context context, DoanhSoTungNv fragment, ArrayList<HoaDon> list) {
         super(context,0,list);
         this.context = context;
         this.fragment = fragment;
@@ -88,7 +89,7 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
             tvBienSoHD.setText("Biển số: " + item.bienSoHD);
 
             tvGiaMua = v.findViewById(R.id.tvGiaMua);
-            tvGiaMua.setText("Giá Mua: "+item.giaTien + " vnđ");
+            tvGiaMua.setText("Giá Mua: "+item.giaTien);
 
             tvNgaymua = v.findViewById(R.id.tvngaymua);
             tvNgaymua.setText("Ngày Mua: "+sdf.format(item.ngay));
@@ -106,16 +107,9 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
                 v.findViewById(R.id.lineitem).setBackgroundColor(Color.YELLOW);
             }
             imgDelete = v.findViewById(R.id.imgDelete);
+            imgDelete.setVisibility(View.INVISIBLE);
         }
-        if(!fragment.getTennv().equals("admin")){
-            imgDelete.setEnabled(false);
-        }
-        imgDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                fragment.xoa(String.valueOf(item.maHoaDon));
-            }
-        });
+
         return v;
     }
 

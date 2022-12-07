@@ -46,7 +46,7 @@ public class TopXeAdapter extends ArrayAdapter<Top> {
             tvXe = v.findViewById(R.id.tvXe);
             tvXe.setText("Xe: "+item.tenXe);
             tvSL = v.findViewById(R.id.tvSL);
-            tvSL.setText("Số lượng: "+item.soLuong);
+            tvSL.setText("Số lượng bán: "+item.soLuong);
         }
         return v;
     }

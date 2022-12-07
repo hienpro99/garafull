@@ -78,9 +78,9 @@ public class NhanVienDAO {
         return 1;
 
     }
-    public NhanVien getTenNv(String name){
-        String sql = "SELECT * FROM NhanVien WHERE maNv=?";
+    public List<NhanVien> getTenNv(String name){
+        String sql = "SELECT * FROM NhanVien WHERE tenNhanVien=?";
         List<NhanVien> list = getData(sql, name);
-        return list.get(0);
+        return list;
     }
 }
