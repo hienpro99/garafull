@@ -19,7 +19,7 @@ import tuandxph21037.nhom3.gara.fragment.TopNhanVienFragment;
 public class TopNhanVienAdapter extends ArrayAdapter<TopNhanVien> {
     private Context context;
     TopNhanVienFragment fragment;
-    TextView tvNhanVienT, tvSL, tvDoanhSo;
+    TextView tvNhanVienT, tvSL, tvTien;
     private ArrayList<TopNhanVien> list;
 
     public TopNhanVienAdapter(@NonNull Context context, TopNhanVienFragment fragment, ArrayList<TopNhanVien> list) {
@@ -45,9 +45,9 @@ public class TopNhanVienAdapter extends ArrayAdapter<TopNhanVien> {
             tvNhanVienT = v.findViewById(R.id.tvNhanVienT);
             tvNhanVienT.setText("Nhân viên: " + item.tenNhanVien);
             tvSL = v.findViewById(R.id.tvSL);
-            tvSL.setText("Chốt sales:" + item.soLuong);
-            tvDoanhSo = v.findViewById(R.id.tvTien);
-            tvDoanhSo.setText("Doanh số: " + item.doanhSo + " vnđ");
+            tvSL.setText("Số lượng bán: " + item.soLuong);
+            tvTien = v.findViewById(R.id.tvTien);
+            tvTien.setText("Doanh số: " + item.doanhSo + " vnđ");
         }
         return v;
     }

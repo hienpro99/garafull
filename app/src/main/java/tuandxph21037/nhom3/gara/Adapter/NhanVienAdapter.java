@@ -22,7 +22,7 @@ public class NhanVienAdapter extends ArrayAdapter<NhanVien> {
     NhanVienfragment fragment;
     private ArrayList<NhanVien> list;
     TextView tvMaNv,tvTenNV,tvSDT,tvUser,tvPass;
-    ImageView imgNhanVien,imgDelete;
+    ImageView imgEdit,imgDelete;
 
     public NhanVienAdapter(@NonNull Context context, NhanVienfragment fragment , ArrayList<NhanVien> list) {
         super(context, 0,list);
@@ -58,12 +58,6 @@ public class NhanVienAdapter extends ArrayAdapter<NhanVien> {
 //            tvUser.setText("Tên đăng nhập: "+item.User);
             tvPass = v.findViewById(R.id.tvMK);
             tvPass.setText("Mật Khẩu: "+item.matKhau);
-            imgNhanVien = v.findViewById(R.id.imgNhanVien);
-            if (position % 3 == 0) {
-                imgNhanVien.setImageResource(R.drawable.avtnv);
-            } else {
-                imgNhanVien.setImageResource(R.drawable.avtnv1);
-            }
             imgDelete = v.findViewById(R.id.imgDelete);
 
             //

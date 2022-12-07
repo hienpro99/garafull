@@ -1,7 +1,6 @@
 package tuandxph21037.nhom3.gara.fragment;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,33 +21,34 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import tuandxph21037.nhom3.gara.Adapter.HoaDonAdapter;
-import tuandxph21037.nhom3.gara.Adapter.HoaDonDTAdapter;
+import tuandxph21037.nhom3.gara.Adapter.HoaDonTungNvAdapter;
 import tuandxph21037.nhom3.gara.DAO.HoaDonDAO;
+import tuandxph21037.nhom3.gara.ManGiaoDienActivity;
 import tuandxph21037.nhom3.gara.Model.HoaDon;
 import tuandxph21037.nhom3.gara.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link DoanhSoNhanVien#newInstance} factory method to
+ * Use the {@link DoanhSoTungNv#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DoanhSoNhanVien extends Fragment {
+public class DoanhSoTungNv extends Fragment {
+    ManGiaoDienActivity manGiaoDienActivity;
     Button btnTuNgay, btnDenNgay, btnDoanhThu;
     EditText edTuNgay, edDenNgay;
     TextView tvDoanhThu, tvhd;
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy");
-    int mYear, mMonth, mDay;
+    int mYear, mMonth, mDay, dt;
     List<HoaDon> listHd;
-    HoaDonDTAdapter adp;
+    HoaDonTungNvAdapter adp;
     ListView lv;
-    public DoanhSoNhanVien() {
+    public DoanhSoTungNv() {
         // Required empty public constructor
     }
 
 
-    public static DoanhSoNhanVien newInstance() {
-        DoanhSoNhanVien fragment = new DoanhSoNhanVien();
+    public static DoanhSoTungNv newInstance() {
+        DoanhSoTungNv fragment = new DoanhSoTungNv();
         return fragment;
     }
 
@@ -62,12 +61,13 @@ public class DoanhSoNhanVien extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_doanhsonhanvien, container, false);
+        return inflater.inflate(R.layout.fragment_doanhsotungnv, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        manGiaoDienActivity= (ManGiaoDienActivity) getActivity();
         lv = view.findViewById(R.id.lvHDonDT);
         edTuNgay = view.findViewById(R.id.edTuNgay);
         edDenNgay = view.findViewById(R.id.edDenNgay);
@@ -105,10 +105,15 @@ public class DoanhSoNhanVien extends Fragment {
                 String tuNgay = edTuNgay.getText().toString();
                 String denNgay = edDenNgay.getText().toString();
                 HoaDonDAO hoaDonDAO = new HoaDonDAO(getActivity());
+
                 tvDoanhThu.setText("Doanh thu: "+hoaDonDAO.getDoanhThu(tuNgay, denNgay)+" VNĐ");
                 listHd= new ArrayList<>();
-                listHd=hoaDonDAO.getHoaDonDT(tuNgay,denNgay);
-                adp= new HoaDonDTAdapter(getActivity(),DoanhSoNhanVien.newInstance(), (ArrayList<HoaDon>) listHd);
+                listHd=hoaDonDAO.getHDNV(tuNgay,denNgay, manGiaoDienActivity.getTennv());
+                for (int i = 0; i < listHd.size(); i++) {
+                    dt = listHd.get(i).giaTien+dt;
+                }
+                tvDoanhThu.setText("Doanh số của bạn : "+dt+" VNĐ");
+                adp= new HoaDonTungNvAdapter(getActivity(), DoanhSoTungNv.newInstance(), (ArrayList<HoaDon>) listHd);
                 lv.setAdapter(adp);
                 tvhd= view.findViewById(R.id.tvhd);
                 tvhd.setVisibility(View.VISIBLE);

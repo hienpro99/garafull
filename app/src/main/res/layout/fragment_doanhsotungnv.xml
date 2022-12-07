@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnDoanhThu"
-        android:text="Doanh Thu"
+        android:text="Doanh Số"
         android:textSize="20dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"/>
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvDoanhThu"
         android:textSize="20dp"
-        android:text="Doanh Thu"
+        android:text="Doanh Số"
         android:layout_marginTop="20dp"/>
     <TextView
         android:layout_marginTop="20dp"

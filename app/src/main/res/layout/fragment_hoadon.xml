@@ -3,13 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.Home">
-
-   <ListView
-       android:id="@+id/lvHoaDon"
-       android:background="#F5D348"
+    tools:context=".fragment.Home"
+    android:background="#F5D348"
+    >
+   <LinearLayout
        android:layout_width="match_parent"
-       android:layout_height="match_parent"/>
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       >
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:layout_marginBottom="20dp"
+          android:background="@color/white">
+         <com.google.android.material.textfield.TextInputEditText
+             android:layout_width="0dp"
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:id="@+id/searchNv"
+             android:hint="Nhập tên nhân viên">
+         </com.google.android.material.textfield.TextInputEditText>
+         <ImageView
+             android:layout_marginLeft="20dp"
+             android:layout_width="50dp"
+             android:layout_height="50dp"
+             android:src="@drawable/ic_search"
+             android:id="@+id/search"
+             android:background="@color/colorPrimary"/>
+      </LinearLayout>
+
+      <ListView
+          android:id="@+id/lvHoaDon"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"/>
+   </LinearLayout>
+
    <com.google.android.material.floatingactionbutton.FloatingActionButton
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
