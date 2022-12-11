@@ -113,7 +113,16 @@ public class Home extends Fragment {
 
         lnTopNhanVien = view.findViewById(R.id.lnTopNhanVien);
                 lnTopNhanVien.setOnClickListener(view1 -> {
-            replaceFragment(TopNhanVienFragment.newInstance());
+                    Intent intent1 = getActivity().getIntent();
+                    String user = intent1.getStringExtra("user");
+                    if (user.equals("admin")){
+                        view.findViewById(R.id.lnTopNhanVien).setEnabled(true);
+                        replaceFragment(TopNhanVienFragment.newInstance());
+                    }else {
+                        view.findViewById(R.id.lnTopNhanVien).setEnabled(false);
+                        Toast.makeText(getActivity(), "Bạn không có quyền để dùng chức năng này", Toast.LENGTH_SHORT).show();
+                    }
+//            replaceFragment(TopNhanVienFragment.newInstance());
         });
         lnDoanhThu = view.findViewById(R.id.lnDoanhThu);
         lnDoanhThu.setOnClickListener(view1 -> {
