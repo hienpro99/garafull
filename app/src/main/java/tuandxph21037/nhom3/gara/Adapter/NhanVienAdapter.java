@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+import tuandxph21037.nhom3.gara.DAO.HoaDonDAO;
 import tuandxph21037.nhom3.gara.Model.NhanVien;
 import tuandxph21037.nhom3.gara.R;
 import tuandxph21037.nhom3.gara.fragment.NhanVienfragment;
@@ -64,12 +65,16 @@ public class NhanVienAdapter extends ArrayAdapter<NhanVien> {
 //            imgEdit = v.findViewById(R.id.imgEdit);
             imgDelete = v.findViewById(R.id.imgDelete);
         }
-        imgDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                fragment.xoa(String.valueOf(item.maNv));
-            }
-        });
+        HoaDonDAO hdDao = new HoaDonDAO(context);
+        if(hdDao.checkNhanVienHD(item.maNv).size()==0){
+            imgDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    fragment.xoa(String.valueOf(item.maNv));
+                }
+            });
+        }else imgDelete.setEnabled(false);
         return v;
     }
 }
