@@ -65,7 +65,7 @@ public class LoaiXeAdapter extends ArrayAdapter<LoaiXe> {
         }
         imgDelete.setOnClickListener(view -> {
             xeDao= new XeDAO(context);
-            if(xeDao.checkXeLX(String.valueOf(item.maLoaiXe))==null){
+            if(xeDao.checkXeLX(String.valueOf(item.maLoaiXe)).size()==0){
                 fragment.xoa(String.valueOf(item.maLoaiXe));
             }else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

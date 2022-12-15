@@ -74,10 +74,10 @@ public class XeDAO {
         }
         return list;
     }
-    public Xe checkXeLX(String maloaixe){
+    public List<Xe> checkXeLX(String maloaixe){
         String sql = "SELECT * FROM Xe WHERE maLoaiXe=?";
         List<Xe> list = getData(sql, maloaixe);
-        return list.get(0);
+        return list;
     }
 
 }
