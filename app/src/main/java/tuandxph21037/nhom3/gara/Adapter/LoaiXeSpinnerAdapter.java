@@ -35,6 +35,7 @@ public class LoaiXeSpinnerAdapter extends ArrayAdapter<LoaiXe> {
             v= inflater.inflate(R.layout.loai_xe_item_spinner,null);
         }
         final LoaiXe  item = list.get(position);
+        //lấy dữ liệu từ class loại xe
         if (item != null){
             tvMaLoaiXe = v.findViewById(R.id.tvMaLoaiXeSp);
             tvMaLoaiXe.setText(item.maLoaiXe + ".");

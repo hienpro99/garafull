@@ -36,7 +36,7 @@ public class LoginActivity2 extends AppCompatActivity {
         edUserName.setText(pref.getString("USERNAME",""));
         edPassword.setText(pref.getString("PASSWORD",""));
         chkRememberPass.setChecked(pref.getBoolean("REMEMBER",false));
-
+        //Xoá tên đăng nhập và mật khẩu.
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +44,9 @@ public class LoginActivity2 extends AppCompatActivity {
                 edPassword.setText("");
             }
         });
+        //Kiểm tra thông tin đăng nhập của người
+        //dùng có tồn tại trong bảng ThuThu hay
+        //không? Và đưa ra các thông báo phù hợp.
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,14 +78,16 @@ public class LoginActivity2 extends AppCompatActivity {
                 Toast.makeText(this, "Tên đăng nhập hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
         }//end else
     }
-
+///Nếu check thông tin đăng nhập sẽ lưu vào
+//SharedPreferences.
     private void rememberUser(String strUser, String strPass, boolean status) {
         SharedPreferences pref = getSharedPreferences("USER_FILE",MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
         if (!status){
-            //xóa tình trạng lưu trữ trước đó
+            //xóa tình trạng lưu trữ trước đó khi đổi mật khẩu
             edit.clear();
         }else {
+            //lưu dữ liệu
             edit.putString("USERNAME",strUser);
             edit.putString("PASSWORD",strPass);
             edit.putBoolean("REMEMBER",status);

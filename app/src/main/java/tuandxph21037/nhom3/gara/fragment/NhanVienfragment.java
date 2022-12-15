@@ -106,9 +106,17 @@ public class NhanVienfragment extends Fragment {
 //            edUser.setText(item.User);
 //            edPass.setText(item.matKhau);
 //        }
+        //Nút [Hủy]
+        //Xoá tất cả EditText
         btnCancelNV.setOnClickListener(view -> {
             dialog.dismiss();
         });
+        ///Nút [Lưu]
+        //Kiểm tra thông tin có nhập đầy đủ không?
+        //Kiểm tra mật khẩu và xác nhận có giống
+        //nhau hay không?
+        //Lưu thông tin tài khoản vào CSDL
+        //Thông báo thông tin phù hợp
         btnSaveNV.setOnClickListener(view -> {
             item = new NhanVien();
             item.tenNhanVien = edTenNV.getText().toString();
@@ -141,12 +149,13 @@ public class NhanVienfragment extends Fragment {
         });
         dialog.show();
     }
-
+// cập nhật lại toàn bộ list view khi tác động vào các thực thể
     void capNhatLv() {
         list = (ArrayList<NhanVien>) dao.getAll();
         adapter = new NhanVienAdapter(getActivity(),this,list);
         lvNhanVien.setAdapter(adapter);
     }
+    // khi ấn vào xóa thì hiển thị ra dialog xóa
     public void xoa(final String Id){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Delete");
@@ -156,11 +165,13 @@ public class NhanVienfragment extends Fragment {
         builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                // gọi trong dao và xóa theo id rồi cập nhật listview và hiển thị ra màn hình
                 dao.delete(Id);
                 capNhatLv();
                 dialogInterface.cancel();
             }
         });
+        // nếu không thì ẩn thanh dialog
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -170,6 +181,7 @@ public class NhanVienfragment extends Fragment {
         AlertDialog alertDialog = builder.create();
         builder.show();
     }
+    // kiểm tra giá trị nhập rỗng và check số điện thoại có trùng với biểu thức chính quy hay không
     public int validate(){
         int check = 1;
         String regexsdt = edSDT.getText().toString();

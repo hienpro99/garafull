@@ -70,6 +70,7 @@ public class LoaiXefragment extends Fragment {
         fab = view.findViewById(R.id.fab);
         dao = new LoaiXeDAO(getActivity());
         capNhatLv();
+        //FloatingButton: mở hộp thoại thêm/sửa loại xe,
         fab.setOnClickListener(view1 -> {
             opendialog(getActivity(),0);
 
@@ -92,17 +93,22 @@ public class LoaiXefragment extends Fragment {
             edMaLoaiXe.setText(String.valueOf(item.maLoaiXe));
             edTenLoaiXe.setText(item.tenLoai);
         }
+        //Nút [Huỷ]: đóng hộp thoại
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dialog.dismiss();
             }
         });
+        //Nút [Lưu]: Lưu loại xe vào SQLite, đóng hộp
+        //thoại.
         btnSave.setOnClickListener(view -> {
             item = new LoaiXe();
             item.tenLoai = edTenLoaiXe.getText().toString();
+            //kiểm tra tính nhập đúng và type =0 hay =1
             if (validate()>0){
                 if (type==0){
+                    //nếu giá trị bằng 0 thì insert loại xe và lưu vào sql trong bảng loại xe
                     if (dao.insert(item)>0){
                         Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
                     }else {
@@ -110,6 +116,7 @@ public class LoaiXefragment extends Fragment {
                     }
 
                 }else {
+                    //nếu type = 1 thì cập nhật
                     item.maLoaiXe = Integer.parseInt(edMaLoaiXe.getText().toString());
                     if (dao.update(item)>0){
                         Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
@@ -119,16 +126,20 @@ public class LoaiXefragment extends Fragment {
                 }
                 capNhatLv();
                 dialog.dismiss();
+                // cập nhật lại list view khi có tác động thêm sửa xóa vào loại xe
             }
         });
         dialog.show();
+        // hiển thị lên màn hình
     }
+    //cập nhật lại list theo bảng loại xe có trong dao theo getALL data
     void capNhatLv() {
         list = (ArrayList<LoaiXe>) dao.getAll();
         adapter = new LoaiXeAdapter(getActivity(),this,list);
         lv.setAdapter(adapter);
     }
     public void xoa(final String Id){
+        // dùng alert để hiển thị hộp thoại khi nhấn vào Image xóa
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Delete");
         builder.setMessage("Bạn có muốn xóa không?");
@@ -137,6 +148,7 @@ public class LoaiXefragment extends Fragment {
         builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                //nếu yes thì xóa rồi cập nhật lại lv, diaglog bị ẩn đi khi hoàn thành
                 dao.delete(Id);
                 capNhatLv();
                 dialogInterface.cancel();
@@ -146,12 +158,14 @@ public class LoaiXefragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
+                // nếu không xóa thì ẩn dialog đi
             }
         });
         AlertDialog alert = builder.create();
         builder.show();
     }
     public int validate(){
+        // check tính nhập rỗng rồi thông báo
         int check = 1;
         if (edTenLoaiXe.getText().length()==0){
             Toast.makeText(getContext(), "Bạn Phải nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();

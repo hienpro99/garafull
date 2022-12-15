@@ -9,11 +9,12 @@
     <ListView
         android:id="@+id/lvXe"
         android:layout_width="match_parent"
-        android:background="#69DB80"
+        android:background="#FFC107"
         android:layout_height="match_parent"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FFC107"
         android:id="@+id/fab"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"

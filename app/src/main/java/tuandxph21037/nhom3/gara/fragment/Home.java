@@ -64,7 +64,7 @@ public class Home extends Fragment {
         ActionViewFlipper();
         idDoiMK = view.findViewById(R.id.idDoiMK);
         idDoiMK.setOnClickListener(view1 -> {
-            replaceFragment(DoiMatKhau.newInstance());
+            replaceFragment(DoiMatKhau.newInstance());// chuyển đổi giữa các màn hình khi click vào view
         });
         idDangXuat= view.findViewById(R.id.idDangXuat);
         idDangXuat.setOnClickListener(view1 -> {
@@ -82,7 +82,7 @@ public class Home extends Fragment {
         lnNhanVien.setOnClickListener(view1 -> {
             Intent intent1 = getActivity().getIntent();
             String user = intent1.getStringExtra("user");
-            if (user.equals("admin")){
+            if (user.equals("admin")){//set quyền cho người dùng khi không phải là admin
                 view.findViewById(R.id.lnNhanVien).setEnabled(true);
                 replaceFragment(NhanVienfragment.newInstance());
             }else {
@@ -139,7 +139,7 @@ public class Home extends Fragment {
 
 
     }
-
+    // hàm tạo ảnh chuyển động luân phiên nhau trong màn hình home
     private void ActionViewFlipper() {
         List<String> mangquangcao = new ArrayList<>();
         mangquangcao.add("https://tintuc.ngan-hang.com/media/blog/Trao-xe-xin_banner-Web-1.png");

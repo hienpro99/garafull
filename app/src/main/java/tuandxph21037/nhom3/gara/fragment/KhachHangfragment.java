@@ -73,13 +73,17 @@ public class KhachHangfragment extends Fragment {
         lvKH = view.findViewById(R.id.lvKhachHang);
         fab = view.findViewById(R.id.fab);
         dao = new KhachHangDAO(getActivity());
+        // cập nhật listview khi tác động vào các thay đổi của thực thể
         capNhatLv();
+        // hiển thị diaglog
         fab.setOnClickListener(view1 -> {
             openDialog(getActivity(),0);
         });
+        //ấn giữ để hiển thị diaglog cập nhật
         lvKH.setOnItemLongClickListener((parent, view1, position, id) -> {
             item = list.get(position);
             openDialog(getActivity(),1);
+            //cập nhật
             return false;
         });
     }
@@ -93,6 +97,7 @@ public class KhachHangfragment extends Fragment {
         edSdt = dialog.findViewById(R.id.edSDT);
         btnSave = dialog.findViewById(R.id.btnSaveKH);
         btnCancel = dialog.findViewById(R.id.btnCancelKH);
+        // kiểm tra type insert 0 hay update 1
         edMaKH.setEnabled(false);
         if (type != 0){
             edMaKH.setText(String.valueOf(item.maKhachHang));
@@ -100,9 +105,12 @@ public class KhachHangfragment extends Fragment {
             edTuoi.setText(item.Tuoi);
             edSdt.setText(item.sdt);
         }
+        //Nút [Huỷ]: đóng hộp thoại
         btnCancel.setOnClickListener(view -> {
             dialog.dismiss();
         });
+        //Nút [Lưu]: Lưu thành viên vào SQLite, đóng hộp
+        //thoại
         btnSave.setOnClickListener(view -> {
             item = new KhachHang();
             item.hoTen = edTen.getText().toString();
@@ -110,6 +118,7 @@ public class KhachHangfragment extends Fragment {
             item.sdt = edSdt.getText().toString();
             if (validate()>0){
                 if (type==0){
+                    //type = 0 thì insert
                     if (dao.insert(item)>0){
                         Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
                     }else {
@@ -117,6 +126,7 @@ public class KhachHangfragment extends Fragment {
                     }
 
                 }else {
+                    //type = 1 thì cập nhật
                     item.maKhachHang = Integer.parseInt(edMaKH.getText().toString());
                     if (dao.update(item)>0){
                         Toast.makeText(context, "Sửa thành công", Toast.LENGTH_SHORT).show();
@@ -125,6 +135,7 @@ public class KhachHangfragment extends Fragment {
                     }
                 }
                 capNhatLv();
+                //cập nhật listview khi hoàn thành câu lệnh
                 dialog.dismiss();
             }
         });
@@ -137,6 +148,7 @@ public class KhachHangfragment extends Fragment {
         lvKH.setAdapter(adapter);
     }
     public void xoa(final String Id){
+        //sử dụng alert để hiển thị bảng xóa
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Delete");
         builder.setMessage("Bạn có muốn xóa không?");
@@ -145,6 +157,7 @@ public class KhachHangfragment extends Fragment {
         builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                //gọi trong dao xóa theo id
                 dao.delete(Id);
                 capNhatLv();
                 dialogInterface.cancel();
@@ -153,6 +166,7 @@ public class KhachHangfragment extends Fragment {
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                //nếu không xóa thì ẩn dialog
                 dialogInterface.cancel();
             }
         });
@@ -160,6 +174,7 @@ public class KhachHangfragment extends Fragment {
         builder.show();
     }
     public int validate(){
+        // kiểm tra tính nhập rỗng và kiểm tra sdt có nhập đúng định dạng hay không
         int check = 1;
         String regexsdt = edSdt.getText().toString();
 
