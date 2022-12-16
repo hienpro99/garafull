@@ -171,6 +171,11 @@ public class HoaDonDAO {
         List<HoaDon> list = getData(sql, maxe);
         return list;
     }
+    public List<HoaDon> checkKH(String maKhachHang){
+        String sql = "SELECT * FROM HoaDon WHERE maKhachHang=?";
+        List<HoaDon> list = getData(sql, maKhachHang);
+        return list;
+    }
     public List<HoaDon> checkNhanVienHD(String maNv) {
         String sql = "SELECT * FROM HoaDon WHERE maNv=?";
         List<HoaDon> list = getData(sql, maNv);

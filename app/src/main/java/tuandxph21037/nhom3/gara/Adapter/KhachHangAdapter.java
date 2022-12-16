@@ -1,6 +1,8 @@
 package tuandxph21037.nhom3.gara.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
+import tuandxph21037.nhom3.gara.DAO.HoaDonDAO;
+import tuandxph21037.nhom3.gara.DAO.XeDAO;
 import tuandxph21037.nhom3.gara.Model.KhachHang;
 import tuandxph21037.nhom3.gara.R;
 import tuandxph21037.nhom3.gara.fragment.KhachHangfragment;
@@ -63,9 +67,23 @@ public class KhachHangAdapter extends ArrayAdapter<KhachHang> {
 //            imgEdit = v.findViewById(R.id.imgEdit);
         }
         imgDelete.setOnClickListener(view -> {
-            fragment.xoa(String.valueOf(item.maKhachHang));
-
-//            lists.remove(position);
+            HoaDonDAO hoaDonDAO = new HoaDonDAO(context);
+            if(hoaDonDAO.checkKH(String.valueOf(item.maKhachHang)).size()==0){
+                fragment.xoa(String.valueOf(item.maKhachHang));
+            }else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Cảnh báo!!");
+                builder.setMessage("Tồn tại khách hàng trong hóa đơn\n" + "Không thể xóa!");
+                builder.setIcon(R.drawable.ic_baseline_warning_24);
+                builder.setCancelable(true);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.show();
+            }
         });
         //
         return v;

@@ -151,7 +151,7 @@ public class Home extends Fragment {
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             viewFlipper.addView(imageView);
         }
-        viewFlipper.setFlipInterval(7000);
+        viewFlipper.setFlipInterval(5000);
         viewFlipper.setAutoStart(true);
         Animation sline_in = AnimationUtils.loadAnimation(getContext(),R.anim.sline_in_right);
         Animation sline_out = AnimationUtils.loadAnimation(getContext(),R.anim.sline_out_right);

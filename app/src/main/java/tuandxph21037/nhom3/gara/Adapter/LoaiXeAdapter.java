@@ -71,7 +71,7 @@ public class LoaiXeAdapter extends ArrayAdapter<LoaiXe> {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Warning!");
                 builder.setMessage("Xe trong Loại xe này đang được đăng bán\n" + "Không thể xóa!");
-                builder.setIcon(R.drawable.ic_baseline_delete_24);
+                builder.setIcon(R.drawable.ic_baseline_warning_24);
                 builder.setCancelable(true);
                 builder.setPositiveButton("Đã hiểu", new DialogInterface.OnClickListener() {
                     @Override
