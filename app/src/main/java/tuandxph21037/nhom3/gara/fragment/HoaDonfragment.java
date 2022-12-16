@@ -160,6 +160,8 @@ public class HoaDonfragment extends Fragment {
                 if(!tennv.equals("admin")){
                     item = list.get(i);
                     openDialog(getActivity(),1);
+                }else {
+                    Toast.makeText(getContext(), "admin chỉ được xóa hóa đơn", Toast.LENGTH_SHORT).show();
                 }
 
                 return false;

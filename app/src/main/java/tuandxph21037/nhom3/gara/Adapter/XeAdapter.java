@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -70,12 +71,17 @@ public class XeAdapter extends ArrayAdapter<Xe> {
             tvGiaMua.setText("Giá : "+item.gia+ " vnđ");
             imgDelete = v.findViewById(R.id.imgDelete);
         }
-        hdDao= new HoaDonDAO(context);
-        if(hdDao.checkXeHD(String.valueOf(item.maXe)).size()==0){
+       
             imgDelete.setOnClickListener(view -> {
+                hdDao= new HoaDonDAO(context);
+                if(hdDao.checkXeHD(String.valueOf(item.maXe)).size()==0){
                 fragment.xoa(String.valueOf(item.maXe));
+                }else {
+                    imgDelete.setEnabled(false);
+                    Toast.makeText(context, "cần xóa hóa đơn trước khi xóa xe", Toast.LENGTH_SHORT).show();
+                }
             });
-        }else imgDelete.setEnabled(false);
+        
 //                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 //                builder.setTitle("Warning!");
 //                builder.setMessage("Có hóa đơn\n" + "Không thể xóa!");

@@ -11,6 +11,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -107,13 +108,17 @@ public class HoaDonAdapter extends ArrayAdapter<HoaDon> implements Filterable {
             }
             imgDelete = v.findViewById(R.id.imgDelete);
         }
-        if(!fragment.getTennv().equals("admin")){
-            imgDelete.setEnabled(false);
-        }
+
         imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fragment.xoa(String.valueOf(item.maHoaDon));
+                if(!fragment.getTennv().equals("admin")){
+                    imgDelete.setEnabled(false);
+                    Toast.makeText(context, "bạn không có quyền xóa hóa đơn", Toast.LENGTH_SHORT).show();
+                }else {
+                    fragment.xoa(String.valueOf(item.maHoaDon));
+                }
+
             }
         });
         return v;

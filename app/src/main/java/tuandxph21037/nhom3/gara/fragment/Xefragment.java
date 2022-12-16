@@ -45,6 +45,7 @@ import java.util.List;
 
 import tuandxph21037.nhom3.gara.Adapter.LoaiXeSpinnerAdapter;
 import tuandxph21037.nhom3.gara.Adapter.XeAdapter;
+import tuandxph21037.nhom3.gara.DAO.HoaDonDAO;
 import tuandxph21037.nhom3.gara.DAO.LoaiXeDAO;
 import tuandxph21037.nhom3.gara.DAO.XeDAO;
 import tuandxph21037.nhom3.gara.Model.LoaiXe;
@@ -125,8 +126,16 @@ public class Xefragment extends Fragment {
         });
         //ấn giữ để cập nhật khi type = 1
         lvXe.setOnItemLongClickListener((parent, view1, position, id) -> {
+//            item = list.get(position);
+//            openDiaLog(getActivity(), 1);
+//            return false;
+            HoaDonDAO hddao=new HoaDonDAO(getContext());
             item = list.get(position);
-            openDiaLog(getActivity(), 1);
+            if(hddao.checkXeHD(String.valueOf(item.maXe)).size()==0){
+                openDiaLog(getActivity(), 1);
+            }else {
+                Toast.makeText(getActivity(), "Tồn tại xe trong hóa đơn \n không thể sửa", Toast.LENGTH_SHORT).show();
+            }
             return false;
         });
     }
