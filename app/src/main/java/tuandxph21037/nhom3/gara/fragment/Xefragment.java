@@ -298,6 +298,7 @@ public class Xefragment extends Fragment {
     }
 
     public int validate() {
+        XeDAO xedao = new XeDAO(getActivity());
         int check = 1;
         //kiểm tra tính nhập rỗng và biểu thức chính quy
         String regexBS = edBienSoX.getText().toString();
@@ -306,6 +307,10 @@ public class Xefragment extends Fragment {
             check = -1;
         }else if (regexBS.length() > 9||regexBS.matches(regex)== false){
             Toast.makeText(getActivity(), "Sai định dạng biển số xe", Toast.LENGTH_SHORT).show();
+            check = -1;
+        }else if(xedao.checkBienSo(edBienSoX.getText().toString()).size()==1){
+            Toast.makeText(getActivity(), "Biển số đã tồn tại", Toast.LENGTH_SHORT).show();
+            edBienSoX.setText("");
             check = -1;
         }
         return check;

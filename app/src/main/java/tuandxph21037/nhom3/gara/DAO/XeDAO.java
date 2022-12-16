@@ -79,5 +79,10 @@ public class XeDAO {
         List<Xe> list = getData(sql, maloaixe);
         return list;
     }
+    public List checkBienSo(String bienso){
+        String sql = "SELECT * FROM Xe WHERE bienSo=?";
+        List<Xe> list = getData(sql, bienso);
+        return list;
+    }
 
 }
